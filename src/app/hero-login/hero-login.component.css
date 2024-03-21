@@ -1,0 +1,83 @@
+.login-form{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .login-card {
+    max-width: auto;
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center;
+    border-radius: 1%;
+    background-color: rgba(0, 0, 0, 0.237);
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    justify-self: center;
+    position: absolute;
+    left: 15%;
+  }
+  
+  .background-card{
+    background-image: url('/assets/airport.jpg');
+    /* backdrop-filter: blur(15px); 
+    opacity: 0.85; */
+    max-width: 95%;
+    max-height: 95%;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    margin: auto;
+    height: inherit;
+    width:inherit;
+    display: flex;
+  }
+  
+  .page-container{
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+  
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    color: white;
+  }
+  
+ 
+
+   ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label{
+    color: #ff0073 !important;
+
+  }
+
+  ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #ff0073 !important;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: #ff0073;
+    --mat-tab-header-active-label-text-color: #ff0073;
+    --mat-tab-header-active-ripple-color: #ff0073;
+    --mat-tab-header-inactive-ripple-color: #ff0073;
+    --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+    --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+    --mat-tab-header-active-focus-label-text-color: #ff0073;
+    --mat-tab-header-active-hover-label-text-color: #ff0073;
+    --mat-tab-header-active-focus-indicator-color: #ff0073;
+    --mat-tab-header-active-hover-indicator-color: #ff0073;
+}
+
+  ::ng-deep .mat-mdc-tab-labels{
+    background-color: rgba(0, 0, 0, 0.237)!important;
+}

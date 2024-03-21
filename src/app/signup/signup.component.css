@@ -1,0 +1,70 @@
+.login-form{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .login-card {
+    max-width: auto;
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center;
+    border-radius: 1%;
+    background-color: rgba(0, 0, 0, 0.237);
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    justify-self: center;
+    position: absolute;
+    left: 15%;
+  }
+  
+  .background-card{
+    background-image: url('/assets/airport.jpg');
+    /* backdrop-filter: blur(15px);  */
+    max-width: 95%;
+    max-height: 95%;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    margin: auto;
+    height: inherit;
+    width:inherit;
+    display: flex;
+  }
+  
+  .page-container{
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+  
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    color: white;
+  }
+  
+  .mat-mdc-card-subtitle{
+    color: white;
+  }
+  
+  .mdc-text-field--filled {
+    color: white;
+  }
+  
+  mat-placeholder {
+    color: white;
+  }
+  
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
+    color: white !important;
+   }
