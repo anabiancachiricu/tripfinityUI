@@ -5,13 +5,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HttpClientModule} from "@angular/common/http";
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { HeroLoginComponent } from './hero-login/hero-login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [/* Your components */],
+  declarations: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -21,8 +31,18 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule, 
     FormsModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule,
+    HttpClientModule,
+    SignupComponent,
+    LoginComponent,
+    HeroLoginComponent,
+    NavbarComponent,
+    ProfileComponent,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    CommonModule
   ],
-  bootstrap: [/* Your root component */]
+  bootstrap: [AppModule]
 })
 export class AppModule { }
