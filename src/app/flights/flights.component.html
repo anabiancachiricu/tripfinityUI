@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<label>Origin:</label>
+<mat-form-field>
+  <input matInput placeholder="Search for airport" [formControl]="searchControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="searchFlights()">
+  Search
+</button>
+
+<div *ngIf="hasFlights">
+  <p *ngFor="let flight of flights">
+    <mat-card class="profile-card">
+      <mat-card-header>
+        <mat-card-title
+          >From: {{ flight.origin }} -> To:
+          {{ flight.destination }}</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <p>Departure : {{ flight.departureDate }}</p>
+        <p>Return : {{ flight.returnDate }}</p>
+        <p>Price : {{ flight.price }}</p>
+      </mat-card-content>
+    </mat-card>
+</p>
+</div>

@@ -1,0 +1,29 @@
+body {
+    background-image: 
+        linear-gradient(rgba(255, 0, 115, 0.25), rgba(255, 0, 115, 0.25)), 
+        url('/assets/lantern.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: larger;
+    button {
+        width: fit-content;
+        padding: 10px;  /* adjust as needed */
+    }
+}
+

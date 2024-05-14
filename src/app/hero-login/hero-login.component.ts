@@ -6,6 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     templateUrl: './hero-login.component.html',
     styleUrl: './hero-login.component.css',
-    imports: [SignupComponent, LoginComponent,MatCardModule,MatTabsModule,HttpClientModule, CommonModule
+    imports: [SignupComponent, NavbarComponent, LoginComponent,MatCardModule,MatTabsModule,HttpClientModule, CommonModule
     ]
 })
 export class HeroLoginComponent {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,18 +11,34 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   setAuthToken(token: string | null): void {
+    const currentTime = new Date();
     this.authToken = token;
+    localStorage.setItem('token', JSON.stringify(this.authToken));
+    localStorage.setItem(
+      'expires_at',
+      JSON.stringify(currentTime.getSeconds() + 3000)
+    );
   }
 
   getAuthToken(): string | null {
-    return this.authToken;
+    let token = localStorage.getItem('token');
+    if (token) {
+      token = token.replace(/^"|"$/g, '');
+    }
+    return token;
   }
 
   isLoggedIn(): boolean {
-    return !!this.authToken;
+    // return !!this.authToken;
+    return !!localStorage.getItem('token');
   }
+
   getResponse(request: string, headers: any): Observable<any> {
     return this.http.get(request, { headers });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires_at');
+  }
 }

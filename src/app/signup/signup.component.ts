@@ -56,6 +56,7 @@ export class SignupComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   allRequiredFieldsCompleted: boolean = false;
+  hasError: boolean=false;
   
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
     this.minDate = new Date(1924, 0, 1); // January is month 0
@@ -76,13 +77,13 @@ export class SignupComponent implements OnInit {
   
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      // username: new FormControl('', [Validators.required, Validators.minLength(3)]),
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      birthDate: new FormControl('', [Validators.required, dateWithinRangeValidator(this.minDate, this.maxDate)])
-      
+      birthDate: new FormControl('', [Validators.required, dateWithinRangeValidator(this.minDate, this.maxDate)]),
+      profilePicture: new FormControl('')
     });
 
     this.allRequiredFieldsCompleted = false;
@@ -91,6 +92,7 @@ export class SignupComponent implements OnInit {
       console.log(this.allRequiredFieldsCompleted);
     });
   }
+
 
   signup() {
     const apiUrl = 'http://localhost:8080/auth/addNewUser';
@@ -104,10 +106,12 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/hero-login']);
           console.log('Signup successful', response);
           this.signupForm.reset();
+          
         },
         (error) => {
-          console.error('Signup failed', error);
-          this.errorMessage = "Must complete with another username."
+          console.error('Signup failed', error.errorMessage);
+          this.hasError = true;
+          this.errorMessage =error.errorMessage;
         }
       );
     }

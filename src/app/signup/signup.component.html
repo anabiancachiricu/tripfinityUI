@@ -28,11 +28,11 @@
         <mat-error *ngIf="signupForm.hasError('email', 'email')">Invalid email</mat-error>
       </mat-form-field>
       
-        <mat-form-field class="signup-field" >
+        <!-- <mat-form-field class="signup-field" >
           <mat-label>Username</mat-label>
           <input type="text" class="input" matInput placeholder="Username" name="username" formControlName="username" required/>
           <mat-error *ngIf="signupForm.hasError('required', 'username')">Username is required</mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
   
      <br>
 
@@ -54,6 +54,7 @@
         <mat-error *ngIf="signupForm.hasError('minlength', 'password')">Password must be at least 6 characters</mat-error>
       </mat-form-field>
       <br />
+      <div *ngIf="hasError" color="primary">The user with given email already exists!</div>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="!allRequiredFieldsCompleted">Sign Up</button>
     </form>

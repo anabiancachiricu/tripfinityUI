@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -38,10 +39,10 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     HeroLoginComponent,
     NavbarComponent,
-    ProfileComponent,
     MatFormFieldModule,
     MatDatepickerModule,
-    CommonModule
+    CommonModule,
+    MatListModule
   ],
   bootstrap: [AppModule]
 })
