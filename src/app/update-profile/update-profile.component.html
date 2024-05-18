@@ -1,0 +1,67 @@
+<body>
+  <app-navbar></app-navbar>
+  <div class="container">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <mat-card class="profile-card">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="profile-image"></div> -->
+          <mat-card-title>
+            <mat-label>Edit Profile</mat-label>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <!-- <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" readonly />
+          </mat-form-field> -->
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" readonly />
+            </mat-form-field>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" readonly />
+        </mat-form-field> -->
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Birth Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions class="action-buttons">
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" type="submit">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</body>

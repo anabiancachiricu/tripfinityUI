@@ -1,0 +1,38 @@
+.profile-card {
+    max-width: 400px;
+    opacity: 90%;
+    
+  }
+  
+  .profile-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  body {
+    background-image: url("/assets/profile.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .full-width {
+    width: 100%;
+  }

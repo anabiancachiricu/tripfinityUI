@@ -59,4 +59,8 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  goToUpdateProfile(){
+    this.router.navigate(['/update-profile']);
+  }
 }

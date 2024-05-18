@@ -1,3 +1,4 @@
+<body>
 <app-navbar></app-navbar>
 <div class="container">
 <mat-card class="profile-card">
@@ -10,13 +11,12 @@
         <p>Email : {{profile.email}} </p>
         <p>BirthDate : {{profile.birthDate}} </p>
       <p>
-        Description: The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+        Description: {{profile.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">Edit</button>
+      <button mat-raised-button color="primary" (click)="goToUpdateProfile()">Edit</button>
     </mat-card-actions>
   </mat-card>
 </div>
+</body>

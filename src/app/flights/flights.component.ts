@@ -44,7 +44,7 @@ export class FlightsComponent {
   flights : any =[];
   dests : any=[];
   searchControl = new FormControl();
-  filteredOptions: Observable<string[]> | undefined;
+  filteredOptions: Observable<{ iataCode: string; city: string; airportName: string; }[]> | undefined;
   originAirport: string = '';
   hasFlights: boolean =false;
 
@@ -57,20 +57,19 @@ export class FlightsComponent {
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/error']);
+    } else {
+      console.log("is logged in"  + this.authService.isLoggedIn());
+      console.log("is logged in with token"  + this.authService.getAuthToken());
+      // this.getFlights();
+      // this.getDestinations();
+      this.filteredOptions = this.searchControl.valueChanges.pipe(
+        debounceTime(200),
+        startWith(''),
+        switchMap(value => this.searchAirports(value))
+      );
     }
-    else{
-        console.log("is logged in"  + this.authService.isLoggedIn());
-        console.log("is logged in with token"  + this.authService.getAuthToken());
-        // this.getFlights();
-        // this.getDestinations();
-        this.filteredOptions = this.searchControl.valueChanges.pipe(
-          debounceTime(200),
-          startWith(''),
-          switchMap(value => this.searchAirports(value))
-        );
-    }
-    
   }
+  
 
   
   onOptionSelected(event: any) {
@@ -79,16 +78,17 @@ export class FlightsComponent {
     console.log("origin: "+ this.originAirport);
   }
 
-  searchAirports(term: string): Observable<string[]> {
+  searchAirports(term: string): Observable<{iataCode: string, city: string, airportName: string}[]> {
     const apiUrl = `http://localhost:8080/flights/api/origin_airport_search?term=${term}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:8080',
       Authorization: 'Bearer ' + this.authService.getAuthToken(),
     });
-
-    return this.http.get<string[]>(apiUrl, { headers });
+  
+    return this.http.get<{iataCode: string, city: string, airportName: string}[]>(apiUrl, { headers });
   }
+  
 
 
   searchFlights() {
@@ -100,8 +100,8 @@ export class FlightsComponent {
     });
     let params = new HttpParams();
     params = params.append('origin', this.originAirport);
-
-    this.http.get<any[]>(apiUrl, { headers, params}).subscribe(
+  
+    this.http.get<any[]>(apiUrl, { headers, params }).subscribe(
       (response: any) => {
         this.flights = response;
         this.hasFlights = true;
@@ -111,25 +111,6 @@ export class FlightsComponent {
       }
     );
   }
-
   
-
-  getFlights() {
-    const apiUrl = 'http://localhost:8080/flights/search';
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:8080',
-      Authorization: 'Bearer ' + this.authService.getAuthToken(),
-    });
-
-    this.http.get<any[]>(apiUrl, { headers }).subscribe(
-      (response: any) => {
-        this.flights = response;
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
-
+  
 }

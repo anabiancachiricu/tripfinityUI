@@ -1,6 +1,6 @@
 .profile-card {
     max-width: 400px;
-    
+    opacity: 90%;
     
   }
   
@@ -14,3 +14,15 @@
     align-items: center;
     display: flex;
   }
+
+  body {
+    background-image: url("/assets/profile.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+  }
+  

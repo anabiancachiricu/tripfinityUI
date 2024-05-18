@@ -5,11 +5,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { AuthService } from '../authService';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -36,4 +37,7 @@ export class NavbarComponent {
     this.router.navigate(['/flights']);
   }
 
+  public goToFlightsSpecific(){
+    this.router.navigate(['/flights-specific']);
+  }
 }
