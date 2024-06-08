@@ -20,6 +20,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GoogleMapsModule } from '@angular/google-maps';
+import {  } from '@google/maps';
 
 @NgModule({
   declarations: [],
@@ -42,7 +45,9 @@ import {MatListModule} from '@angular/material/list';
     MatFormFieldModule,
     MatDatepickerModule,
     CommonModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    GoogleMapsModule
   ],
   bootstrap: [AppModule]
 })

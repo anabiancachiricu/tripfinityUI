@@ -87,7 +87,7 @@ export class UpdateProfileComponent implements OnInit{
           firstName: [this.profile.firstName, Validators.required],
           lastName: [this.profile.lastName, Validators.required],
           username: [{ value: this.profile.username, disabled: true }, Validators.required],
-          email: [{value:this.profile.email,disabled: true}, [Validators.required, Validators.email]],
+          email: [this.profile.email, [Validators.required, Validators.email]],
           birthDate: [this.profile.birthDate, Validators.required],
           description: [this.profile.description]
         });

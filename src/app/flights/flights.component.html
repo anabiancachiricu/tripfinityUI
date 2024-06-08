@@ -1,5 +1,6 @@
 <body>
   <app-navbar></app-navbar>
+  <br>
   <div class="containerall">
     <div class="container">
       <mat-form-field appearance="fill">
@@ -29,6 +30,7 @@
         Search
       </button>
     </div>
+    <mat-spinner *ngIf = "isPending"></mat-spinner>
 
     <div class="center-wrapper">
     <div class="center" *ngIf="hasFlights">

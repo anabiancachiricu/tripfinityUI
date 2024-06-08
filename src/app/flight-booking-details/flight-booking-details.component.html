@@ -1,0 +1,52 @@
+<body>
+    <app-navbar></app-navbar>
+  
+    <app-sidenav></app-sidenav>
+  
+    <div class="container with-sidenav">
+    <br />
+        <mat-card class="hotelbooks-card">
+          <mat-card-header>
+            <mat-card-title> Departure flight: {{ flightBookingResponse.departureFlight.carrierCode }}{{ flightBookingResponse.departureFlight.flightNumber }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p> Leave from: {{ flightBookingResponse.departureFlight.departIataCode }} on {{flightBookingResponse.departureFlight.departTime}}</p>
+            <p> Arrive in: {{ flightBookingResponse.departureFlight.arrilvalIataCode }} on {{flightBookingResponse.departureFlight.arrivalTime}}</p>
+            <p> Terminal: {{ flightBookingResponse.departureFlight.departTerminal }} Duration: {{ flightBookingResponse.departureFlight.duration }} </p>
+          </mat-card-content>
+          <mat-card-header>
+            <mat-card-title> Return flight: {{ flightBookingResponse.returnFlight.carrierCode }}{{ flightBookingResponse.returnFlight.flightNumber }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p> Leave from: {{ flightBookingResponse.returnFlight.departIataCode }} on {{flightBookingResponse.returnFlight.departTime}}</p>
+            <p> Arrive in: {{ flightBookingResponse.returnFlight.arrilvalIataCode }} on {{flightBookingResponse.returnFlight.arrivalTime}}</p>
+            <p> Terminal: {{ flightBookingResponse.returnFlight.departTerminal }} Duration: {{ flightBookingResponse.returnFlight.duration }} </p>
+          </mat-card-content>
+          <mat-card-header>
+            <mat-card-title> Passengers: </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p *ngFor="let pass of flightBookingResponse.passengerList" >
+                {{ pass.firstName }} {{pass.lastName}}
+                <br>
+                Fly with {{pass.documents[0].type}} {{pass.documents[0].number}}
+                <br>
+                Contact: {{pass.email}}, {{pass.phoneNumber}} 
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="goBack()"
+            >
+              Back
+            </button>
+          </mat-card-actions>
+          
+        </mat-card>
+   
+    </div>
+
+  </body>
+  

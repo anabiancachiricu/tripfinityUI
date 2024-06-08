@@ -1,0 +1,27 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="center-wrapper">
+        <div class="center">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item" *ngFor="let card of cards; let i = index" [ngClass]="{'focused': i === currentCardIndex}">
+                        <mat-card class="flight-card">
+                            <mat-card-header>
+                                <mat-card-title>{{ card.name }}</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <img class="img" [src]="card.image" alt="carousel image">
+                                <p>{{ card.text }}</p>
+                            </mat-card-content>
+                            <mat-card-actions class="action-buttons">
+                                <!-- <button mat-raised-button color="accent" type="button" (click)="goBack()">
+                                    Back
+                                </button> -->
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

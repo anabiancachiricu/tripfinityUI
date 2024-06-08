@@ -1,0 +1,42 @@
+<body>
+    <app-navbar></app-navbar>
+  
+    <app-sidenav></app-sidenav>
+  
+    <div class="container with-sidenav">
+    <br />
+    <div class="center" >
+      
+        <mat-card class="hotelbooks-card">
+          <mat-card-header>
+            <mat-card-title> {{ hotelBooking.hotelOfferDTO.hotelName }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2> Room details:</h2>
+            <p> Check-in: {{ hotelBooking.hotelOfferDTO.checkInDate }}</p>
+            <p> Check-out: {{ hotelBooking.hotelOfferDTO.checkOutDate }}</p>
+            <p> Room category: {{ hotelBooking.hotelOfferDTO.roomCategory }}</p>
+            <p> Description: {{hotelBooking.hotelOfferDTO.description}}</p>
+            <p> Guests booked for: {{hotelBooking.hotelGuest.noOfAdditionalPeople}} +1</p>
+            <h2> Reservation details:</h2>
+            <p> Booked by: {{hotelBooking.hotelGuest.firstName}} {{hotelBooking.hotelGuest.lastName}}</p>
+            <p> Email: {{hotelBooking.hotelGuest.email}} </p>
+            <p> Phone Number: {{hotelBooking.hotelGuest.phoneNumber}} </p>
+            <h2> Payment details:</h2>
+            <p>Payment type: {{hotelBooking.payment.paymentType}} </p>
+            <p>Status: CONFIRMED</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="goBack()"
+            >
+              Back
+            </button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+  </body>
+  

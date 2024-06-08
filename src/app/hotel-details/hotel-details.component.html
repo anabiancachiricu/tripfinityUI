@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>YourApp</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGNh5odE3MP9uorykGtN3B9ZxS_NYPyXk"></script>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+    
+    <div class="center-wrapper">
+      <div class="center">
+        <mat-card class="hotel-card">
+          <mat-card-header>
+            <mat-card-title> {{ hotel.hotelName }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>CheckIn date: {{ hotel.checkInDate }}</p>
+            <p>CheckOut date: {{ hotel.checkOutDate }}</p>
+            <p>{{ hotel.description }}</p>
+
+            <p>Room : {{ hotel.roomCategory }}</p>
+            <p>
+              {{ hotel.noOfBeds }} {{ hotel.bedType }} for
+              {{ hotel.noOfGuests }}
+            </p>
+            <p>Total price: {{ hotel.price }} {{ hotel.currency }}</p>
+          </mat-card-content>
+          <mat-card-actions class="action-buttons">
+            <button
+              mat-raised-button
+              color="accent"
+              type="button"
+              (click)="goBack()"
+            >
+              Back
+            </button>
+            <button mat-raised-button color="primary" type="submit" (click)="bookHotel()">Book</button>
+            <!-- <button mat-raised-button color="primary" type="submit" (click)="openDialog()">Add to wishlist</button> -->
+          </mat-card-actions>
+        </mat-card>
+
+        <div #mapContainer style="height: 400px; width: 100%;"></div>
+        
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<body>
+    <app-navbar></app-navbar>
+  
+    <app-sidenav></app-sidenav>
+  
+    <div class="container with-sidenav">
+    <br />
+    <div class="center" *ngIf="hasFavourites">
+      <p *ngFor="let activity of favourites">
+        <mat-card class="favs-card">
+          <mat-card-header>
+            <mat-card-title> {{ activity.activityName }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ activity.city }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="viewDetails(activity.activId, activity.city)"
+            >
+              View details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </p>
+    </div>
+  </div>
+  </body>
+  

@@ -16,6 +16,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { Flight } from '../model/Flight';
 
 
 @Component({
@@ -55,6 +56,9 @@ export class FlightSpecificComponent {
   // filteredOptionsDest: any=[];
   departDate: any;
   returnDate:any;
+  adults:any;
+  departFlight: Flight = new Flight;
+  returnFlight: Flight = new Flight;
 
   constructor(
     private http: HttpClient,
@@ -115,6 +119,7 @@ export class FlightSpecificComponent {
       'Access-Control-Allow-Origin': 'http://localhost:8080',
       Authorization: 'Bearer ' + this.authService.getAuthToken(),
     });
+    
     let params = new HttpParams();
     params = params.append('origin', this.originAirport);
     params = params.append('destination', this.destAirport);
@@ -122,6 +127,7 @@ export class FlightSpecificComponent {
     params = params.append('departureDate', this.departDate);
     this.returnDate = this.formatDate(this.returnDate);
     params = params.append('returnDate', this.returnDate);
+    params = params.append('adults', this.adults)
 
     this.http.get<any[]>(apiUrl, { headers, params}).subscribe(
       (response: any) => {
@@ -161,5 +167,35 @@ export class FlightSpecificComponent {
     return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
 
+  bookFlight(flight :any){
+    this.departFlight.duration = flight.duration;
+    this.departFlight.departTerminal = flight.departTerminal;
+    this.departFlight.departIataCode= flight.departIataCode;
+    this.departFlight.departTime=flight.departTime;
+    this.departFlight.arrilvalIataCode=flight.departArrilvalIataCode;
+    this.departFlight.arrivalTime=flight.departArrivalTime;
+    this.departFlight.carrierCode = flight.departCarrierCode;
+    this.departFlight.flightNumber = flight.departFlightNumber;
+    this.departFlight.price = flight.totalPrice;
+
+    this.returnFlight.duration = flight.duration;
+    this.returnFlight.departTerminal = flight.returnTerminal;
+    this.returnFlight.departIataCode= flight.returnIataCode;
+    this.returnFlight.departTime=flight.returnTime;
+    this.returnFlight.arrilvalIataCode=flight.returnArrilvalIataCode;
+    this.returnFlight.arrivalTime=flight.returnArrivalTime;
+    this.returnFlight.carrierCode = flight.returnCarrierCode;
+    this.returnFlight.flightNumber = flight.returnFlightNumber;
+    this.returnFlight.price = flight.totalPrice;
+
+    this.router.navigate(['flight-booking'], {
+      state: {
+        departFlight: this.departFlight,
+        returnFlight: this.returnFlight,
+        adults :this.adults
+      }
+    });
+
+  }
   
 }

@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-flights',
@@ -35,7 +36,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ]
 
 })
@@ -47,6 +49,7 @@ export class FlightsComponent {
   filteredOptions: Observable<{ iataCode: string; city: string; airportName: string; }[]> | undefined;
   originAirport: string = '';
   hasFlights: boolean =false;
+  isPending:boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -92,6 +95,7 @@ export class FlightsComponent {
 
 
   searchFlights() {
+    this.isPending=true;
     const apiUrl = `http://localhost:8080/flights/search`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -105,6 +109,7 @@ export class FlightsComponent {
       (response: any) => {
         this.flights = response;
         this.hasFlights = true;
+        this.isPending = false;
       },
       (error) => {
         console.error('Error fetching data:', error);

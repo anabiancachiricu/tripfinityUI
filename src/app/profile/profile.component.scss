@@ -26,3 +26,10 @@
     overflow: hidden; /* Prevents body from scrolling */
   }
   
+  .container.with-sidenav {
+    margin-left: 200px; /* Same width as the sidenav */
+    padding: 16px;
+  }
+  .profile-card, .flight-card {
+    margin-bottom: 16px;
+  }

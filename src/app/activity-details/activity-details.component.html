@@ -1,0 +1,36 @@
+<body>
+    <app-navbar></app-navbar>
+      <div class="center-wrapper">
+      <div class="center">
+          <mat-card class="flight-card">
+            <mat-card-header>
+              <mat-card-title> {{ activity.name }} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="carousel-container">
+                    <div class="carousel">
+                      <div class="carousel-item" *ngFor="let image of visibleImages">
+                        <img class="img" [src]="image" alt="carousel image">
+                      </div>
+                    </div>
+                  </div>
+                  
+              <p> {{ activity.shortDescription }}</p>
+              <p> {{ activity.description}}</p>
+              <p> Want to join? Book your experience here: <a href = "activity.bookingLink"> {{activity.bookingLink}} </a> </p>
+              <p *ngIf= "activity.rating">Rating : {{ activity.rating }}</p>
+              <p>Price : {{ activity.price }} {{activity.currencyCode}}</p>
+            </mat-card-content>
+            <mat-card-actions class="action-buttons">
+                <button mat-raised-button color="accent" type="button" (click)="goBack()">
+                  Back
+                </button>
+                <button mat-raised-button color="primary" type="submit" (click)="addToFavourites()">Add to favourites</button>
+                <button mat-raised-button color="primary" type="submit" (click)="openDialog()">Add to wishlist</button>
+              
+            </mat-card-actions>
+          </mat-card>
+      </div>
+    </div>
+  </body>
+  

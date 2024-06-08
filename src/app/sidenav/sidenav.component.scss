@@ -1,0 +1,11 @@
+.sidenav {
+    width: 15%;
+    position: fixed;
+    top: 64px; /* Adjust based on the height of your navbar */
+    left: 0;
+    height: calc(100% ); /* Adjust based on the height of your navbar */
+    background: #f9f4f4;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  

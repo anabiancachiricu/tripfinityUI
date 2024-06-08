@@ -1,15 +1,14 @@
 <p class="navbar">
     <mat-toolbar color="primary">
-      <img src="assets/logo.jpg" class="logo" alt="logo" (click)="goHome()">
-      <button mat-button>Suggestions</button>
+      <img src="assets/tf20.jpg" class="logo" alt="logo" (click)="goHome()">
+      <button mat-button (click)="goToSuggestions()">Suggestions</button>
       <button mat-button [matMenuTriggerFor]="flightsMenu">Flights</button>
         <mat-menu #flightsMenu="matMenu">
           <button mat-menu-item (click)="goToFlights()">Need inspiration</button>
           <button mat-menu-item (click)="goToFlightsSpecific()">Specific serach</button>
         </mat-menu>
-      <!-- <button mat-button (click)="goToFlights()">Flights</button> -->
-      <button mat-button>Hotels</button>
-      <button mat-button>Itinerary</button>
+      <button mat-button (click)="goToHotels()">Hotels</button>
+      <button mat-button (click)="goToActivities()">Activities</button>
       <span class="example-spacer"></span>
       <button mat-icon-button class="example-icon favorite-icon" aria-label="Logout" (click)="logout()">
         <mat-icon>logout</mat-icon>

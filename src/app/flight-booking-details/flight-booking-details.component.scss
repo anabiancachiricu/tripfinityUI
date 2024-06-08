@@ -1,0 +1,35 @@
+.hotelbooks-card {
+    max-width: 400px;
+    opacity: 90%;
+    
+  }
+  
+  .profile-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  body {
+    background-image: url("/assets/profile.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+  }
+  
+  .container.with-sidenav {
+    margin-left: 200px; /* Same width as the sidenav */
+    padding: 16px;
+  }
+  .hotelbooks-card, .flight-card {
+    margin-bottom: 16px;
+  }

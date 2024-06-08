@@ -1,0 +1,233 @@
+<!-- <body>
+    <app-navbar></app-navbar>
+
+@switch (stepperOrientation | async) {
+    @case ('horizontal') {
+    }
+    @case ('vertical') {
+    }
+  }
+  
+  <mat-stepper
+    class="example-stepper"
+    [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="firstFormGroup" label="Passenger details">
+        <div class="container">
+      <form [formGroup]="firstFormGroup">
+        <mat-form-field>
+          <mat-label>First name</mat-label>
+          <input matInput placeholder="First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select>
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Male">Male</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Document type</mat-label>
+            <mat-select>
+              <mat-option value="Passport">Passport</mat-option>
+              <mat-option value="Identity Card">Identity Card</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field>
+            <mat-label>Document number</mat-label>
+            <input matInput placeholder="Document number" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone number</mat-label>
+            <input matInput placeholder="Phone number" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <br>
+        
+        <div>Free carry-on bag included</div>
+       
+            <mat-checkbox formControlName="firstCtrl">Extra bag?</mat-checkbox>
+        
+
+        <div>
+          <button mat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Passenger bags">
+      <form [formGroup]="secondFormGroup">
+        
+            <div class="container-baggage">
+                <mat-card class="baggage-card" *ngFor="let weight of [10, 20, 26, 32]">
+                  <button mat-button>
+                    <div class="baggage-content">
+                      <mat-icon>work</mat-icon>
+                      <div>{{ weight }} kg</div>
+                    </div>
+                  </button>
+                </mat-card>
+              </div>
+        
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</body> -->
+
+<body>
+  <app-navbar></app-navbar>
+  <mat-stepper [linear]="true" #stepper="matStepper">
+    <mat-step [stepControl]="firstFormGroup" label="Passenger details">
+      <div class="container">
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input
+              matInput
+              placeholder="First name"
+              formControlName="firstName"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input
+              matInput
+              placeholder="Last name"
+              formControlName="lastName"
+              required
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option value="Female">Female</mat-option>
+              <mat-option value="Male">Male</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Document type</mat-label>
+            <mat-select formControlName="documentType">
+              <mat-option value="Passport">Passport</mat-option>
+              <mat-option value="Identity Card">Identity Card</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Document number</mat-label>
+            <input
+              matInput
+              placeholder="Document number"
+              formControlName="documentNumber"
+              required
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Phone number</mat-label>
+            <input
+              matInput
+              placeholder="Phone number"
+              formControlName="phoneNumber"
+              required
+            />
+          </mat-form-field>
+          <br />
+          <div>Free carry-on bag included</div>
+          <mat-checkbox formControlName="extraBag">Extra bag?</mat-checkbox>
+          <div>
+            <button mat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Passenger bags">
+      <form [formGroup]="secondFormGroup">
+        <div class="container-baggage">
+          <mat-card
+            class="baggage-card"
+            *ngFor="let weight of [10, 20, 26, 32]"
+          >
+            <button
+              mat-button
+              (click)="secondFormGroup.patchValue({ baggageWeight: weight })"
+            >
+              <div class="baggage-content">
+                <mat-icon>work</mat-icon>
+                <div>{{ weight }} kg</div>
+              </div>
+            </button>
+          </mat-card>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <div class="container">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Payment</ng-template>
+        <div>
+          <mat-form-field>
+            <mat-label>Payment Type</mat-label>
+            <mat-select formControlName="paymentType" required>
+              <mat-option *ngFor="let type of paymentTypes" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Card Number</mat-label>
+            <input matInput formControlName="cardNumber" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Expiry Date</mat-label>
+            <input matInput type="month" formControlName="expiryDate" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="createFlightBooking()">Finish</button>
+        </div>
+      </form>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</body>

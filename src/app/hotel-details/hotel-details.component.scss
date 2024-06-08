@@ -1,0 +1,96 @@
+.hotel-card {
+    // max-width: 400px;
+    opacity: 90%;
+    height: 100%;
+  }
+  
+  .profile-image {
+    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+  }
+  
+  .container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .containerall {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    // margin-top: 4%;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px; /* Adjust as needed */
+    margin-bottom: 5px; /* Adjust as needed */
+  }
+  
+  body {
+    background-image: url("/assets/hottest.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+  }
+  
+  .center {
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Makes the div take the remaining space */
+    max-height: calc(100vh - 30px); /* Subtract the padding or margins if any */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px; /* Optional: for some padding inside the scrollable div */
+    box-sizing: border-box; /* Ensures padding is included in height calculation */
+  }
+  
+  .center::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+
+  .carousel-container {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: calc(300%); // Adjust based on the number of visible items
+  }
+  
+  .carousel-item {
+    min-width: calc(100% / 3); // Adjust based on the number of visible items
+    flex: 1;
+     display: flex;
+    align-items: center; // Center items vertically
+    justify-content: center; // Center items horizontally
+    overflow: hidden; // Hide any overflow
+    border-radius: 15px; // Set rounded corners, adjust as needed
+    opacity: 1 ; // Ensure full opacity
+  }
+  
+  .carousel img {
+    height: 300px; // Set a fixed height for all images
+    width: auto; // Let the width adjust to maintain aspect ratio
+    object-fit: cover; // Ensure the image covers the entire area without distortion
+    opacity: 1 ; // Ensure full opacity
+    border-radius: 15px; // Set rounded corners, adjust as needed
+  }
+ 
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+ 

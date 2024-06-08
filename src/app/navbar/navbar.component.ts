@@ -40,4 +40,16 @@ export class NavbarComponent {
   public goToFlightsSpecific(){
     this.router.navigate(['/flights-specific']);
   }
+
+  public goToActivities(){
+    this.router.navigate(['/activities']);
+  }
+
+  public goToHotels(){
+    this.router.navigate(['/hotels']);
+  }
+  
+  public goToSuggestions(){
+    this.router.navigate(['/suggestions']);
+  }
 }

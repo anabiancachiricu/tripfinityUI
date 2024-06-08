@@ -1,0 +1,33 @@
+<body>
+    <app-navbar></app-navbar>
+  
+    <app-sidenav></app-sidenav>
+  
+    <div class="container with-sidenav">
+    <br />
+    <div class="center" *ngIf="hasBookings">
+      <p *ngFor="let hbook of hotelBookings">
+        <mat-card class="hotelbooks-card">
+          <mat-card-header>
+            <mat-card-title> {{ hbook.hotelOfferDTO.hotelName }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p> Check-in: {{ hbook.hotelOfferDTO.checkInDate }}</p>
+            <p> Check-out: {{ hbook.hotelOfferDTO.checkOutDate }}</p>
+            <p> Room category: {{ hbook.hotelOfferDTO.roomCategory }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="viewBookingDetails(hbook)"
+            >
+              View details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </p>
+    </div>
+  </div>
+  </body>
+  

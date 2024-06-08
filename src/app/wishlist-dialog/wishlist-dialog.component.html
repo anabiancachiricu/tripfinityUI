@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Wishlist</h1>
+<div mat-dialog-content class="dialog">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Pick one" [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-raised-button (click)="addOption()">Save</button>
+  
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onConfirm()">OK</button>
+</div>

@@ -1,0 +1,118 @@
+<body>
+  <app-navbar></app-navbar>
+  <!-- <form (ngSubmit)="onSubmit()"> -->
+    <!-- <h2>Hotel Offer</h2> -->
+    <mat-stepper [linear]="true" #stepper="matStepper">
+      <div class="container">
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Hotel Offer</ng-template>
+          <div>
+            <mat-form-field>
+              <mat-label>Offer ID</mat-label>
+              <input matInput formControlName="offerId" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Hotel Name</mat-label>
+              <input matInput formControlName="hotelName" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Check-In Date</mat-label>
+              <input matInput type="date" formControlName="checkInDate" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Check-Out Date</mat-label>
+              <input matInput type="date" formControlName="checkOutDate" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+    
+      </mat-step>
+      </div>
+  
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Hotel Guest</ng-template>
+          <div>
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phoneNumber" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>No Of Additional People</mat-label>
+              <input matInput type="number" formControlName="noOfAdditionalPeople">
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+  
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Payment</ng-template>
+          <div>
+            <mat-form-field>
+              <mat-label>Payment Type</mat-label>
+              <mat-select formControlName="paymentType" required>
+                <mat-option *ngFor="let type of paymentTypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Card Number</mat-label>
+              <input matInput formControlName="cardNumber" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Expiry Date</mat-label>
+              <input matInput type="month" formControlName="expiryDate" required>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button color="primary" (click)="createHotelBooking()">Submit</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+ 
+  
+</body>
+
+

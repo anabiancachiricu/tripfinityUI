@@ -1,0 +1,65 @@
+<body>
+    <app-navbar></app-navbar>
+    <br>
+    <div class="containerall">
+        <div class="container">
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Enter city" [(ngModel)]="city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Select your dates</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                matStartDate
+                placeholder="Departure"
+                [(ngModel)]="check_in"
+              />
+              <input matEndDate placeholder="Return" [(ngModel)]="check_out" />
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Adults</mat-label>
+            <input matInput min = 1 [(ngModel)]="adults" type="number" />
+          </mat-form-field>
+        </div>
+      
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="searchHotels()">
+          Search
+        </button>
+      </div>
+      <mat-spinner *ngIf = "isPending"></mat-spinner>
+      <div class="center-wrapper">
+      <div class="center" *ngIf="hasHotels">
+        <h2>Where to stay in {{ this.city }}</h2>
+        <p *ngFor="let hotel of hotels">
+          <mat-card class="flight-card">
+            <mat-card-header>
+              <mat-card-title> {{ hotel.name }} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p> Distance from city center: {{ hotel.distanceFromCityCenter }} {{hotel.distanceUnit}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+            
+            <button mat-raised-button color="primary" (click)="viewDetails(hotel.hotelId, check_in, check_out, adults, hotel.latitude, hotel.longitude )">
+              View details
+            </button>
+            <!-- <mat-icon (click)="addToFavourites(activity)">favorite_border</mat-icon> -->
+          </mat-card-actions>
+          </mat-card>
+        </p>
+      </div>
+    </div>
+  </div>
+  </body>
+  

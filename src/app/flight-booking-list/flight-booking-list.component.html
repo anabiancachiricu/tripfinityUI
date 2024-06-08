@@ -1,0 +1,42 @@
+<body>
+    <app-navbar></app-navbar>
+  
+    <app-sidenav></app-sidenav>
+  
+    <div class="container with-sidenav">
+    <br />
+    <div class="center" *ngIf="hasFlightBookings">
+      <p *ngFor="let flight of flightBookings">
+        <mat-card class="hotelbooks-card">
+          <mat-card-header>
+            <mat-card-title> Departure flight: {{ flight.departureFlight.carrierCode }}{{ flight.departureFlight.flightNumber }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p> Leave from: {{ flight.departureFlight.departIataCode }} on {{flight.departureFlight.departTime}}</p>
+            <p> Arrive in: {{ flight.departureFlight.arrilvalIataCode }} on {{flight.departureFlight.arrivalTime}}</p>
+            <p> Terminal: {{ flight.departureFlight.departTerminal }} Duration: {{ flight.departureFlight.duration }} </p>
+          </mat-card-content>
+          <mat-card-header>
+            <mat-card-title> Return flight: {{ flight.returnFlight.carrierCode }}{{ flight.returnFlight.flightNumber }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p> Leave from: {{ flight.returnFlight.departIataCode }} on {{flight.returnFlight.departTime}}</p>
+            <p> Arrive in: {{ flight.returnFlight.arrilvalIataCode }} on {{flight.returnFlight.arrivalTime}}</p>
+            <p> Terminal: {{ flight.returnFlight.departTerminal }} Duration: {{ flight.returnFlight.duration }} </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="viewFlightBookingDetails(flight)"
+            >
+              View details
+            </button>
+          </mat-card-actions>
+          
+        </mat-card>
+      </p>
+    </div>
+  </div>
+  </body>
+  
