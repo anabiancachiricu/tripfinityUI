@@ -23,6 +23,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GoogleMapsModule } from '@angular/google-maps';
 import {  } from '@google/maps';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -47,7 +48,8 @@ import {  } from '@google/maps';
     CommonModule,
     MatListModule,
     MatDialogModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatExpansionModule
   ],
   bootstrap: [AppModule]
 })

@@ -6,6 +6,7 @@
     <div class="container with-sidenav">
     <br />
     <div class="center" *ngIf="hasFavourites">
+      <div class="scrollable-container">
       <p *ngFor="let activity of favourites">
         <mat-card class="favs-card">
           <mat-card-header>
@@ -27,5 +28,6 @@
       </p>
     </div>
   </div>
+</div>
   </body>
   

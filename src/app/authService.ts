@@ -16,7 +16,7 @@ export class AuthService {
     localStorage.setItem('token', JSON.stringify(this.authToken));
     localStorage.setItem(
       'expires_at',
-      JSON.stringify(currentTime.getSeconds() + 3000)
+      JSON.stringify(currentTime.getTime() / 1000 + 3000)
     );
   }
 
@@ -29,8 +29,16 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    // return !!this.authToken;
-    return !!localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    const expiresAt = localStorage.getItem('expires_at');
+    if (token && expiresAt) {
+      const expiresAtTime = JSON.parse(expiresAt);
+      const currentTime = new Date().getTime() / 1000;
+      if (currentTime < expiresAtTime) {
+        return true;
+      }
+    }
+    return false;
   }
 
   getResponse(request: string, headers: any): Observable<any> {

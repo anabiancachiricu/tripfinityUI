@@ -1,0 +1,27 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="insideBody">
+        <div class="container">
+            <div class="text">
+                <p><b>Welcome to Tripfinity!</b></p>
+                <p><b>Check our features and decide which one helps you the most!</b></p>
+            </div>
+            <div class="card-container">
+                <div class="card-item" *ngFor="let card of cards; let i = index">
+                    <mat-card class="flight-card">
+                        <mat-card-header>
+                            <mat-card-title>{{ card.name }}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <img class="img" [src]="card.image" alt="carousel image">
+                            <p>{{ card.text }}</p>
+                        </mat-card-content>
+                        <mat-card-actions class="action-buttons">
+                            <button mat-raised-button color="primary" (click)="onButtonClick(card.id)">See details</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

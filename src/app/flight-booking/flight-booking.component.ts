@@ -22,6 +22,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../authService';
 import { PaymentType } from '../model/PaymentType';
 import { PaymentDTO } from '../model/PaymentDto';
+import { ONLY_LETTERS_REGEX, ONLY_NUMBERS_REGEX, PHONE_NUMBER_REGEX } from '../validationConstants';
 
 @Component({
   selector: 'app-flight-booking',
@@ -89,13 +90,13 @@ export class FlightBookingComponent {
     console.log('Return Flight:', this.returnFlight);
 
     this.firstFormGroup = this._formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.pattern(ONLY_LETTERS_REGEX)]],
+      lastName: ['', [Validators.required,  Validators.pattern(ONLY_LETTERS_REGEX)]],
       gender: ['', Validators.required],
       documentType: ['', Validators.required],
       documentNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX)]],
     });
 
     this.secondFormGroup = this._formBuilder.group({
@@ -104,7 +105,7 @@ export class FlightBookingComponent {
 
     this.thirdFormGroup = this._formBuilder.group({
       paymentType: ['', Validators.required],
-      cardNumber: ['', Validators.required],
+      cardNumber: ['',[ Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX), Validators.minLength(12), Validators.maxLength(12)]],
       expiryDate: ['', Validators.required]
     });
 

@@ -1,0 +1,14 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="mountain-destinations-container">
+        <h1>Top 5 Mountain Destinations to Visit in 2024</h1>
+        <div class="destination-card" *ngFor="let destination of destinations">
+          <img [src]="destination.image" alt="{{ destination.name }}">
+          <div class="destination-details">
+            <h2>{{ destination.name }}</h2>
+            <p>{{ destination.description }}</p>
+          </div>
+        </div>
+      </div>
+      
+</body>

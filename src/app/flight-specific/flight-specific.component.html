@@ -71,6 +71,7 @@
     </div>
 
     <div class="center" *ngIf="hasFlights">
+      <div class="scrollable-container">
       <p *ngFor="let flight of flights">
         <mat-card class="flight-card">
           <mat-card-header>
@@ -126,6 +127,7 @@
           </mat-card-actions>
         </mat-card>
       </p>
+    </div>
     </div>
   </div>
 </body>

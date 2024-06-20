@@ -1,0 +1,25 @@
+<body>
+  <app-navbar></app-navbar>
+  <app-sidenav></app-sidenav>
+
+  <div class="container with-sidenav">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel  *ngFor="let wishlist of wishlistList">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ wishlist.name }} </mat-panel-title>
+          <mat-panel-description> View details </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let item of wishlist.wishlistItems">
+        <p> {{item.activityName}}
+        <button mat-button color="primary" (click)="viewDetails(item.activityId, item.city)">View Details</button>
+      </p>  
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br />
+    <div class="example-action-buttons">
+      <button mat-button (click)="accordion.openAll()">Expand All</button>
+      <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+    </div>
+  </div>
+</body>

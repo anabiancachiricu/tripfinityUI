@@ -3,8 +3,9 @@
   <!-- <form (ngSubmit)="onSubmit()"> -->
     <!-- <h2>Hotel Offer</h2> -->
     <mat-stepper [linear]="true" #stepper="matStepper">
-      <div class="container">
+      
       <mat-step [stepControl]="firstFormGroup">
+        <div class="container">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Hotel Offer</ng-template>
           <div>
@@ -35,41 +36,48 @@
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
-    
-      </mat-step>
       </div>
+      </mat-step>
   
       <mat-step [stepControl]="secondFormGroup">
+        <div class="container">
         <form [formGroup]="secondFormGroup">
           <ng-template matStepLabel>Hotel Guest</ng-template>
           <div>
             <mat-form-field>
               <mat-label>First Name</mat-label>
               <input matInput formControlName="firstName" required>
+              <mat-error *ngIf="secondFormGroup.hasError('required', 'firstName')">First name is required</mat-error>
+              <mat-error *ngIf="secondFormGroup.hasError('pattern', 'firstName')">First name should only contain letters</mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <mat-label>Last Name</mat-label>
               <input matInput formControlName="lastName" required>
+              <mat-error *ngIf="secondFormGroup.hasError('required', 'lastName')">Last name is required</mat-error>
+              <mat-error *ngIf="secondFormGroup.hasError('pattern', 'lastName')">Last name should only contain letters</mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <mat-label>Phone Number</mat-label>
               <input matInput formControlName="phoneNumber" required>
+              <mat-error *ngIf="secondFormGroup.hasError('required', 'phoneNumber')">Phone number is required</mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <mat-label>Email</mat-label>
               <input matInput formControlName="email" required>
+              <mat-error *ngIf="secondFormGroup.hasError('required', 'email')">Email is required</mat-error>
+              <mat-error *ngIf="secondFormGroup.hasError('email', 'email')">Email is not valid</mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <mat-label>No Of Additional People</mat-label>
-              <input matInput type="number" formControlName="noOfAdditionalPeople">
+              <input matInput type="number" formControlName="noOfAdditionalPeople" min="0">
             </mat-form-field>
           </div>
           <div>
@@ -77,9 +85,11 @@
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
+        </div>
       </mat-step>
   
       <mat-step [stepControl]="thirdFormGroup">
+        <div class="container">
         <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>Payment</ng-template>
           <div>
@@ -96,12 +106,15 @@
             <mat-form-field>
               <mat-label>Card Number</mat-label>
               <input matInput formControlName="cardNumber" required>
+              <mat-error *ngIf="thirdFormGroup.hasError('required', 'cardNumber')">Card number is required</mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('pattern', 'cardNumber')">Card number is not valid</mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <mat-label>Expiry Date</mat-label>
               <input matInput type="month" formControlName="expiryDate" required>
+              <mat-error *ngIf="thirdFormGroup.hasError('required', 'expiryDate')">Expiry date is required</mat-error>
             </mat-form-field>
           </div>
           <div>
@@ -109,6 +122,7 @@
             <button mat-button color="primary" (click)="createHotelBooking()">Submit</button>
           </div>
         </form>
+      </div>
       </mat-step>
     </mat-stepper>
  

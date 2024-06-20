@@ -1,19 +1,19 @@
 <body>
-    <app-navbar></app-navbar>
-    <br>
-    <div class="containerall">
-        <mat-form-field appearance="fill">
-            <mat-label>City</mat-label>
-            <input matInput placeholder="Enter city" [(ngModel)]="city">
-          </mat-form-field>
-      
-      <div class="button-row">
-        <button mat-raised-button color="primary" (click)="searchActivities()">
-          Search
-        </button>
-      </div>
-      <mat-spinner *ngIf = "isPending"></mat-spinner>
-      <div class="center-wrapper">
+  <app-navbar></app-navbar>
+  <br />
+  <div class="containerall">
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Enter city" [(ngModel)]="city" />
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" (click)="searchActivities()">
+        Search
+      </button>
+    </div>
+    <mat-spinner *ngIf="isPending"></mat-spinner>
+    <div class="center-wrapper scrollable-container">
       <div class="center" *ngIf="hasActivities">
         <h2>What to do in {{ this.city }}</h2>
         <p *ngFor="let activity of activities">
@@ -22,21 +22,26 @@
               <mat-card-title> {{ activity.name }} </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p> {{ activity.shortDescription }}</p>
-              <p>Rating : {{ activity.rating }}</p>
-              <p>Price : {{ activity.price }} {{activity.currencyCode}}</p>
+              <p>{{ activity.shortDescription }}</p>
+              <p>{{ activity.rating }}</p>
+              <p>Price : {{ activity.price }} {{ activity.currencyCode }}</p>
             </mat-card-content>
             <mat-card-actions>
-            
-            <button mat-raised-button color="primary" (click)="viewDetails(activity.activityId, this.city)">
-              View details
-            </button>
-            <mat-icon (click)="addToFavourites(activity)">favorite_border</mat-icon>
-          </mat-card-actions>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="viewDetails(activity.activityId, this.city)"
+              >
+                View details
+              </button>
+              <mat-icon (click)="addToFavourites(activity)"
+                >favorite_border</mat-icon
+              >
+            </mat-card-actions>
           </mat-card>
         </p>
       </div>
     </div>
   </div>
-  </body>
-  
+
+</body>

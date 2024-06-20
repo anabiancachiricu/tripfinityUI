@@ -1,100 +1,3 @@
-<!-- <body>
-    <app-navbar></app-navbar>
-
-@switch (stepperOrientation | async) {
-    @case ('horizontal') {
-    }
-    @case ('vertical') {
-    }
-  }
-  
-  <mat-stepper
-    class="example-stepper"
-    [orientation]="(stepperOrientation | async)!">
-    <mat-step [stepControl]="firstFormGroup" label="Passenger details">
-        <div class="container">
-      <form [formGroup]="firstFormGroup">
-        <mat-form-field>
-          <mat-label>First name</mat-label>
-          <input matInput placeholder="First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Last name</mat-label>
-            <input matInput placeholder="Last name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Gender</mat-label>
-            <mat-select>
-              <mat-option value="Female">Female</mat-option>
-              <mat-option value="Male">Male</mat-option>
-            </mat-select>
-          </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Document type</mat-label>
-            <mat-select>
-              <mat-option value="Passport">Passport</mat-option>
-              <mat-option value="Identity Card">Identity Card</mat-option>
-            </mat-select>
-          </mat-form-field>
-        <mat-form-field>
-            <mat-label>Document number</mat-label>
-            <input matInput placeholder="Document number" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Phone number</mat-label>
-            <input matInput placeholder="Phone number" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <br>
-        
-        <div>Free carry-on bag included</div>
-       
-            <mat-checkbox formControlName="firstCtrl">Extra bag?</mat-checkbox>
-        
-
-        <div>
-          <button mat-button color="primary" matStepperNext>Next</button>
-        </div>
-      </form>
-      </div>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Passenger bags">
-      <form [formGroup]="secondFormGroup">
-        
-            <div class="container-baggage">
-                <mat-card class="baggage-card" *ngFor="let weight of [10, 20, 26, 32]">
-                  <button mat-button>
-                    <div class="baggage-content">
-                      <mat-icon>work</mat-icon>
-                      <div>{{ weight }} kg</div>
-                    </div>
-                  </button>
-                </mat-card>
-              </div>
-        
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
-</body> -->
-
 <body>
   <app-navbar></app-navbar>
   <mat-stepper [linear]="true" #stepper="matStepper">
@@ -109,6 +12,8 @@
               formControlName="firstName"
               required
             />
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'firstName')">First name is required</mat-error>
+            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'firstName')">First name should only contain letters</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Last name</mat-label>
@@ -118,6 +23,8 @@
               formControlName="lastName"
               required
             />
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'lastName')">Last name is required</mat-error>
+            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'firstName')">Last name should only contain letters</mat-error>
           </mat-form-field>
           <br />
           <mat-form-field>
@@ -134,6 +41,7 @@
               <mat-option value="Passport">Passport</mat-option>
               <mat-option value="Identity Card">Identity Card</mat-option>
             </mat-select>
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'documentType')">Document type is required</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Document number</mat-label>
@@ -143,6 +51,7 @@
               formControlName="documentNumber"
               required
             />
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'documentNumber')">Document number is required</mat-error>
           </mat-form-field>
           <br />
           <mat-form-field>
@@ -153,6 +62,8 @@
               formControlName="email"
               required
             />
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'email')">Email is required</mat-error>
+            <mat-error *ngIf="firstFormGroup.hasError('email', 'email')">Email is not valid</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Phone number</mat-label>
@@ -162,10 +73,12 @@
               formControlName="phoneNumber"
               required
             />
+            <mat-error *ngIf="firstFormGroup.hasError('required', 'phoneNumber')">Phone number is required</mat-error>
+            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'phoneNumber')">Phone number is not valid</mat-error>
           </mat-form-field>
-          <br />
-          <div>Free carry-on bag included</div>
-          <mat-checkbox formControlName="extraBag">Extra bag?</mat-checkbox>
+          <br>
+          <div>Carry-on bag included</div>
+          <br>
           <div>
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
@@ -214,12 +127,16 @@
           <mat-form-field>
             <mat-label>Card Number</mat-label>
             <input matInput formControlName="cardNumber" required>
+            <mat-error *ngIf="thirdFormGroup.hasError('required', 'cardNumber')">Card number is required</mat-error>
+            <mat-error *ngIf="thirdFormGroup.hasError('pattern', 'cardNumber')">Card number should only contain numbers</mat-error>
+            <mat-error *ngIf="thirdFormGroup.hasError('minLength', 'cardNumber')">Cardnumber should have 12 digits</mat-error>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field>
             <mat-label>Expiry Date</mat-label>
             <input matInput type="month" formControlName="expiryDate" required>
+            <mat-error *ngIf="thirdFormGroup.hasError('required', 'expiryDate')">Expiry date is required</mat-error>
           </mat-form-field>
         </div>
         <div>

@@ -33,3 +33,14 @@
   .hotelbooks-card, .flight-card {
     margin-bottom: 16px;
   }
+
+  .scrollable-container {
+    max-height: 650px; 
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
+}

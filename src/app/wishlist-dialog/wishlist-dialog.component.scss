@@ -1,6 +1,12 @@
-.dialog{
+.popup{
     width: auto;
-    // height: 500px;
+    height: 250px;
+    overflow: hidden;
+    
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    
 }
 .example-full-width {
     width: 100%;
@@ -9,4 +15,5 @@
   button {
     margin-top: 10px;
   }
+  
   

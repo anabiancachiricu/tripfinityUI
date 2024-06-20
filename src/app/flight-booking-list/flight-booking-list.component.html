@@ -6,6 +6,7 @@
     <div class="container with-sidenav">
     <br />
     <div class="center" *ngIf="hasFlightBookings">
+      <div class="scrollable-container">
       <p *ngFor="let flight of flightBookings">
         <mat-card class="hotelbooks-card">
           <mat-card-header>
@@ -38,5 +39,6 @@
       </p>
     </div>
   </div>
+</div>
   </body>
   

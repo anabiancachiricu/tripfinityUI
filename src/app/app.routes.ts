@@ -21,6 +21,11 @@ import { FlightBookingListComponent } from './flight-booking-list/flight-booking
 import { FlightBookingDetailsComponent } from './flight-booking-details/flight-booking-details.component';
 import { HomeComponent } from './home/home.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
+import { MountainDestinationsComponent } from './mountain-destinations/mountain-destinations.component';
+import { BeachDestinationsComponent } from './beach-destinations/beach-destinations.component';
+import { CityDestinationsComponent } from './city-destinations/city-destinations.component';
+import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
+import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component';
 
 export const routes: Routes = [
     {path: 'login', component:LoginComponent},
@@ -43,7 +48,12 @@ export const routes: Routes = [
     {path: 'flight-booking-list', component:FlightBookingListComponent},
     {path: 'flight-booking-details', component:FlightBookingDetailsComponent},
     {path: 'home', component:HomeComponent},
-    {path: 'suggestions', component:SuggestionsComponent}
+    {path: 'suggestions', component:SuggestionsComponent},
+    {path: 'mountainDestinations', component:MountainDestinationsComponent},
+    {path: 'beachDestinations', component:BeachDestinationsComponent},
+    {path: 'cityDestinations', component:CityDestinationsComponent},
+    {path: 'wishlistList', component:WishlistListComponent},
+    {path: 'home-logged-in', component:HomeLoggedInComponent}
 ];
 
 @NgModule({

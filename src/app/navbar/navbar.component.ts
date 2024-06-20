@@ -22,7 +22,9 @@ export class NavbarComponent {
     private authService: AuthService
   ) {}
   
-  public goHome(){};
+  public goHome(){
+    this.router.navigate(['home-logged-in']);
+  };
 
   public logout(){
     this.authService.logout();

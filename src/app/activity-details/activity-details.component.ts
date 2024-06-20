@@ -166,25 +166,24 @@ export class ActivityDetailsComponent {
     this._snackBar.open(message, action);
   }
 
-  openDialog(): void {
+  openPopup(): void {
     const dialogRef = this.dialog.open(WishlistDialogComponent, {
-      width: '250px',
-      data: { }
+      width: '400px',
+      data: { name: '' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log('Input data:', result);
-      if(result){
-        this.addNewWishlist(result);
+      if (result) {
+        console.log('The dialog was closed with the result:', result);
+        this.addItemToWishlist(result);
+        // Handle the result here (e.g., save it to your service or update the UI)
       }
-      
     });
   }
 
-  addNewWishlist(result: string){
+  addItemToWishlist(result: string){
 
-    const apiUrl = `http://localhost:8080/wishlist/addNewWishlist`;
+    const apiUrl = `http://localhost:8080/wishlist/addItemToWishlist`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:8080',
@@ -192,17 +191,20 @@ export class ActivityDetailsComponent {
     });
 
     const params = new HttpParams()
-      .set('name', result)
+      .set('wishlistName', result)
+      .set('city',this.city )
+      .set('activityName', this.activity.name)
+      .set('activityId', this.activity.activityId);
 
     this.http.post(apiUrl, {}, { headers, params }).subscribe(
       (response: any) => {
-        console.log('New wishlist added', response);
-        this.openSnackBar("wishlist added", "OK");
+        console.log('New item added to wishlist', response);
+        this.openSnackBar("Item added to wishlist", "OK");
       },
       (error) => {
-        console.error('Add new wishlist failed', error.errorMessage);
+        console.error('Add new item failed', error.errorMessage);
         this.errorMessage = error.errorMessage;
-        this.openSnackBar("Add new wishlist failed", "OK");
+        this.openSnackBar("Add new item failed", "OK");
       }
     );
 

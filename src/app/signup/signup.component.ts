@@ -14,6 +14,7 @@ import { AuthService } from '../authService';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ONLY_LETTERS_REGEX } from '../validationConstants';
 
 function dateWithinRangeValidator(minDate: Date, maxDate: Date) {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -78,9 +79,9 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       // username: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(ONLY_LETTERS_REGEX)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(ONLY_LETTERS_REGEX)]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       birthDate: new FormControl('', [Validators.required, dateWithinRangeValidator(this.minDate, this.maxDate)]),
       profilePicture: new FormControl('')

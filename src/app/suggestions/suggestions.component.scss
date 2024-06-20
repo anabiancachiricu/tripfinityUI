@@ -12,65 +12,132 @@ body {
 
 }
 
+// .center-wrapper {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 70%;
+//   }
+  
+//   .center {
+//     width: 80%;
+//     max-width: 1200px;
+//     margin: 0 auto;
+//   }
+  
+//   .carousel-container {
+//     position: relative;
+//     overflow: hidden;
+//     width: 100%;
+//   }
+  
+//   .carousel {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100%;
+//     position: relative;
+//   }
+  
+//   .carousel-item {
+//     // position: absolute;
+//     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+//     opacity: 1;
+//     width: 60%;
+//     max-width: 600px;
+//     height: auto;
+//     transform: scale(0.7);
+//   }
+  
+//   .carousel-item.focused {
+//     opacity: 1;
+//     transform: scale(1);
+//     z-index: 1;
+//   }
+  
+//   .carousel-item.left,
+//   .carousel-item.right {
+//     opacity: 0.5;
+//     z-index: 0;
+//   }
+  
+//   .carousel-item.left {
+//     transform: translateX(-120%) scale(0.7);
+//   }
+  
+//   .carousel-item.right {
+//     transform: translateX(120%) scale(0.7);
+//   }
+  
+  .flight-card {
+    width:100%;
+
+  }
+  
+  .img{
+    width: 100%;
+  }
+
 .center-wrapper {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-container {
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .center {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .carousel-container {
     position: relative;
-    width: 60%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
-}
-
-.carousel {
+    width: 100%;
+  }
+  
+  .carousel {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 100%;
     position: relative;
-}
-
-.carousel-item {
-    position: absolute;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    transform: scale(0.8);
-}
-
-.carousel-item.focused {
-    transform: scale(1);
+  }
+  
+  .carousel-item {
+    // position: absolute;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 1;
-    z-index: 1;
-}
-
-.flight-card {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.img {
-    width: 100%;
+    width: 60%;
+    max-width: 600px;
     height: auto;
-    max-height: 60%; /* Adjust as needed */
-    object-fit: cover;
-}
-
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+    transform: scale(1);
+  }
+  
+  .carousel-item.focused {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+  }
+  
+  .carousel-item.left,
+  .carousel-item.right {
+    opacity: 0.5;
+    
+  }
+  
+  .carousel-item.left {
+    transform: translateX(-100%) scale(1);
+    z-index: 0;
+  }
+  
+  .carousel-item.right {
+    transform: translateX(100%) scale(1);
+    z-index: 2;
+  }
+  
+  .flight-card {
+    width: 100%;
+  }
+  

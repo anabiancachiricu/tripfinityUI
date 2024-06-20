@@ -1,0 +1,65 @@
+body {
+    background-image: 
+        linear-gradient(rgba(255, 0, 115, 0), rgba(255, 0, 115, 0.20)), 
+        url('/assets/map.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.insideBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 16px;
+}
+
+.text {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: xx-large;
+    color: azure;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80%;
+}
+
+.card-item {
+    flex: 1;
+    margin: 8px;
+    max-width: calc(25% - 16px); /* Adjust for margins */
+}
+
+.flight-card {
+    width: 100%;
+}
+
+.img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensure image covers the area */
+}

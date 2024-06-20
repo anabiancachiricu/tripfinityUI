@@ -56,3 +56,14 @@
     width: 0;
     height: 0;
   }
+
+  .scrollable-container {
+    max-height: 550px; 
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
+}

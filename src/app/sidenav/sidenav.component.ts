@@ -40,7 +40,9 @@ export class SidenavComponent {
     this.router.navigate(['favourits']);
   }
 
-  public goToWishlist(){}
+  public goToWishlist(){
+    this.router.navigate(['wishlistList']);
+  }
 
 
 }

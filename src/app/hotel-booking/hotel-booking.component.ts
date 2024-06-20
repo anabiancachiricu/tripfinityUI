@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PaymentType } from '../model/PaymentType';
 import { MatSelectModule } from '@angular/material/select';
+import { ONLY_LETTERS_REGEX, ONLY_NUMBERS_REGEX } from '../validationConstants';
 
 @Component({
   selector: 'app-hotel-booking',
@@ -100,8 +101,8 @@ export class HotelBookingComponent {
     });
 
     this.secondFormGroup = this._formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.pattern(ONLY_LETTERS_REGEX)]],
+      lastName: ['', [Validators.required, Validators.pattern(ONLY_LETTERS_REGEX)]],
       phoneNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       noOfAdditionalPeople: ['']
@@ -109,7 +110,7 @@ export class HotelBookingComponent {
 
     this.thirdFormGroup = this._formBuilder.group({
       paymentType: ['', Validators.required],
-      cardNumber: ['', Validators.required],
+      cardNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX)]],
       expiryDate: ['', Validators.required]
     });
   }

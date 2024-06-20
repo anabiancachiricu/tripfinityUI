@@ -4,7 +4,10 @@
         <div class="center">
             <div class="carousel-container">
                 <div class="carousel">
-                    <div class="carousel-item" *ngFor="let card of cards; let i = index" [ngClass]="{'focused': i === currentCardIndex}">
+                    <div class="carousel-item" *ngFor="let card of cards; let i = index" 
+                         [ngClass]="{'focused': i === currentCardIndex, 
+                                     'left': i === (currentCardIndex - 1 + cards.length) % cards.length, 
+                                     'right': i === (currentCardIndex + 1) % cards.length}">
                         <mat-card class="flight-card">
                             <mat-card-header>
                                 <mat-card-title>{{ card.name }}</mat-card-title>
@@ -14,9 +17,9 @@
                                 <p>{{ card.text }}</p>
                             </mat-card-content>
                             <mat-card-actions class="action-buttons">
-                                <!-- <button mat-raised-button color="accent" type="button" (click)="goBack()">
-                                    Back
-                                </button> -->
+                                <button mat-raised-button color="primary" (click)="onButtonClick()">
+                                    See destinatons
+                                </button>
                             </mat-card-actions>
                         </mat-card>
                     </div>

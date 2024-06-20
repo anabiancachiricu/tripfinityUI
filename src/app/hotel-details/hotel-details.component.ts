@@ -58,13 +58,10 @@ export class HotelDetailsComponent {
   errorMessage: string = '';
   lat: any;
   long: any;
-
   center!: google.maps.LatLngLiteral;
-  zoom = 10;
-
-  @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef;
-  map!: google.maps.Map;
-  
+  zoom: any;
+  options!: google.maps.MapOptions;
+  hasRooms: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -91,6 +88,17 @@ export class HotelDetailsComponent {
       const lat = parseFloat(this.route.snapshot.paramMap.get('lat')!);
       const lng = parseFloat(this.route.snapshot.paramMap.get('long')!);
 
+      this.center = { lat: lat, lng: lng}; 
+      this.zoom = 12;
+      this.options = {
+        mapTypeId: 'roadmap',
+        zoomControl: true,
+        scrollwheel: true,
+        disableDoubleClickZoom: false,
+        maxZoom: 18,
+        minZoom: 8,
+      };
+
       console.log("hotelId", this.hotelId);
       console.log("In: ", this.check_in);
       console.log("Out:", this.check_out);
@@ -99,26 +107,12 @@ export class HotelDetailsComponent {
       console.log("Long:", this.long);
 
       this.getHotelDetails();
-      this.loadGoogleMaps();
-      // this.initMap();
+      
     }
   }
 
-  loadGoogleMaps(): void {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCGNh5odE3MP9uorykGtN3B9ZxS_NYPyXk`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => this.ngZone.run(() => this.initMap());
-    document.head.appendChild(script);
-  }
+  
 
-  initMap(): void {
-    this.map = new google.maps.Map(this.mapContainer.nativeElement, {
-      center: this.center,
-      zoom: this.zoom
-    });
-  }
 
   getHotelDetails() {
     const apiUrl = `http://localhost:8080/hotels/searchById`;
@@ -137,10 +131,12 @@ export class HotelDetailsComponent {
 
     this.http.get<any>(apiUrl, { headers, params}).subscribe(
       (response: any) => {
+        this.hasRooms = true;
         this.hotel = response[0];
       },
       (error) => {
         console.error('Error fetching data:', error);
+        this.hasRooms = false;
       }
     );
   }
