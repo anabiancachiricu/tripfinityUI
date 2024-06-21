@@ -48,6 +48,7 @@ import { ONLY_LETTERS_REGEX, ONLY_NUMBERS_REGEX, PHONE_NUMBER_REGEX } from '../v
 export class FlightBookingComponent {
 
   firstFormGroup!: FormGroup;
+  firstFormGroups: FormGroup[] = [];
   secondFormGroup!: FormGroup;
   thirdFormGroup!: FormGroup;
   flightBooking: FlightBooking = new FlightBooking;
@@ -89,7 +90,8 @@ export class FlightBookingComponent {
     console.log('Depart Flight:', this.departFlight);
     console.log('Return Flight:', this.returnFlight);
 
-    this.firstFormGroup = this._formBuilder.group({
+    for (let i = 0; i < this.adults; i++) {
+    this.firstFormGroups.push( this._formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(ONLY_LETTERS_REGEX)]],
       lastName: ['', [Validators.required,  Validators.pattern(ONLY_LETTERS_REGEX)]],
       gender: ['', Validators.required],
@@ -97,7 +99,8 @@ export class FlightBookingComponent {
       documentNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX)]],
-    });
+    }));
+  }
 
     this.secondFormGroup = this._formBuilder.group({
       baggageWeight: ['', Validators.required]
@@ -112,20 +115,23 @@ export class FlightBookingComponent {
   }
 
   createFlightBooking() {
-    const passenger = new Passenger();
-    passenger.firstName = this.firstFormGroup.value.firstName;
-    passenger.lastName = this.firstFormGroup.value.lastName;
-    passenger.gender = this.firstFormGroup.value.gender;
-    passenger.email = this.firstFormGroup.value.email;
-    passenger.phoneNumber = this.firstFormGroup.value.phoneNumber;
-
-    const document = new Document();
-    document.type = this.firstFormGroup.value.documentType;
-    document.number = this.firstFormGroup.value.documentNumber;
-    passenger.documents = [document];
+    this.passengers = this.firstFormGroups.map(firstFormGroup => {
+      const passenger = new Passenger();
+      passenger.firstName = firstFormGroup.value.firstName;
+      passenger.lastName = firstFormGroup.value.lastName;
+      passenger.gender = firstFormGroup.value.gender;
+      passenger.email = firstFormGroup.value.email;
+      passenger.phoneNumber = firstFormGroup.value.phoneNumber;
+  
+      const document = new Document();
+      document.type = firstFormGroup.value.documentType;
+      document.number = firstFormGroup.value.documentNumber;
+      passenger.documents = [document];
+      return passenger;
+    });
 
     // this.flightBooking.passengerList.push(passenger);
-    this.passengers.push(passenger);
+    // this.passengers.push(passenger);
     this.flightBooking.departureFlight = new Flight(); // Populate this with real data
     this.flightBooking.returnFlight = new Flight(); // Populate this with real data
 

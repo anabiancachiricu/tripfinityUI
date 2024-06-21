@@ -3,86 +3,90 @@
   <mat-stepper [linear]="true" #stepper="matStepper">
     <mat-step [stepControl]="firstFormGroup" label="Passenger details">
       <div class="container">
-        <form [formGroup]="firstFormGroup">
-          <mat-form-field>
-            <mat-label>First name</mat-label>
-            <input
-              matInput
-              placeholder="First name"
-              formControlName="firstName"
-              required
-            />
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'firstName')">First name is required</mat-error>
-            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'firstName')">First name should only contain letters</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Last name</mat-label>
-            <input
-              matInput
-              placeholder="Last name"
-              formControlName="lastName"
-              required
-            />
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'lastName')">Last name is required</mat-error>
-            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'firstName')">Last name should only contain letters</mat-error>
-          </mat-form-field>
-          <br />
-          <mat-form-field>
-            <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
-              <mat-option value="Female">Female</mat-option>
-              <mat-option value="Male">Male</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br />
-          <mat-form-field>
-            <mat-label>Document type</mat-label>
-            <mat-select formControlName="documentType">
-              <mat-option value="Passport">Passport</mat-option>
-              <mat-option value="Identity Card">Identity Card</mat-option>
-            </mat-select>
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'documentType')">Document type is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Document number</mat-label>
-            <input
-              matInput
-              placeholder="Document number"
-              formControlName="documentNumber"
-              required
-            />
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'documentNumber')">Document number is required</mat-error>
-          </mat-form-field>
-          <br />
-          <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input
-              matInput
-              placeholder="Email"
-              formControlName="email"
-              required
-            />
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'email')">Email is required</mat-error>
-            <mat-error *ngIf="firstFormGroup.hasError('email', 'email')">Email is not valid</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Phone number</mat-label>
-            <input
-              matInput
-              placeholder="Phone number"
-              formControlName="phoneNumber"
-              required
-            />
-            <mat-error *ngIf="firstFormGroup.hasError('required', 'phoneNumber')">Phone number is required</mat-error>
-            <mat-error *ngIf="firstFormGroup.hasError('pattern', 'phoneNumber')">Phone number is not valid</mat-error>
-          </mat-form-field>
-          <br>
-          <div>Carry-on bag included</div>
-          <br>
+        <div *ngFor="let group of firstFormGroups; let i = index">
+          <h3>Passenger {{i + 1}}</h3>
+          <form [formGroup]="group">
+            <mat-form-field>
+              <mat-label>First name</mat-label>
+              <input
+                matInput
+                placeholder="First name"
+                formControlName="firstName"
+                required
+              />
+              <mat-error *ngIf="group.hasError('required', 'firstName')">First name is required</mat-error>
+              <mat-error *ngIf="group.hasError('pattern', 'firstName')">First name should only contain letters</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Last name</mat-label>
+              <input
+                matInput
+                placeholder="Last name"
+                formControlName="lastName"
+                required
+              />
+              <mat-error *ngIf="group.hasError('required', 'lastName')">Last name is required</mat-error>
+              <mat-error *ngIf="group.hasError('pattern', 'lastName')">Last name should only contain letters</mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Male">Male</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Document type</mat-label>
+              <mat-select formControlName="documentType">
+                <mat-option value="Passport">Passport</mat-option>
+                <mat-option value="Identity Card">Identity Card</mat-option>
+              </mat-select>
+              <mat-error *ngIf="group.hasError('required', 'documentType')">Document type is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Document number</mat-label>
+              <input
+                matInput
+                placeholder="Document number"
+                formControlName="documentNumber"
+                required
+              />
+              <mat-error *ngIf="group.hasError('required', 'documentNumber')">Document number is required</mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="group.hasError('required', 'email')">Email is required</mat-error>
+              <mat-error *ngIf="group.hasError('email', 'email')">Email is not valid</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Phone number</mat-label>
+              <input
+                matInput
+                placeholder="Phone number"
+                formControlName="phoneNumber"
+                required
+              />
+              <mat-error *ngIf="group.hasError('required', 'phoneNumber')">Phone number is required</mat-error>
+              <mat-error *ngIf="group.hasError('pattern', 'phoneNumber')">Phone number is not valid</mat-error>
+            </mat-form-field>
+            <br>
+            <div>Carry-on bag included</div>
+            <br>
+            
+          </form>
           <div>
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
-        </form>
+        </div>
       </div>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Passenger bags">
@@ -109,41 +113,40 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup">
+    <mat-step [stepControl]="thirdFormGroup" label="Payment">
       <div class="container">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Payment</ng-template>
-        <div>
-          <mat-form-field>
-            <mat-label>Payment Type</mat-label>
-            <mat-select formControlName="paymentType" required>
-              <mat-option *ngFor="let type of paymentTypes" [value]="type">
-                {{ type }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <mat-label>Card Number</mat-label>
-            <input matInput formControlName="cardNumber" required>
-            <mat-error *ngIf="thirdFormGroup.hasError('required', 'cardNumber')">Card number is required</mat-error>
-            <mat-error *ngIf="thirdFormGroup.hasError('pattern', 'cardNumber')">Card number should only contain numbers</mat-error>
-            <mat-error *ngIf="thirdFormGroup.hasError('minLength', 'cardNumber')">Cardnumber should have 12 digits</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <mat-label>Expiry Date</mat-label>
-            <input matInput type="month" formControlName="expiryDate" required>
-            <mat-error *ngIf="thirdFormGroup.hasError('required', 'expiryDate')">Expiry date is required</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="createFlightBooking()">Finish</button>
-        </div>
-      </form>
+        <form [formGroup]="thirdFormGroup">
+          <div>
+            <mat-form-field>
+              <mat-label>Payment Type</mat-label>
+              <mat-select formControlName="paymentType" required>
+                <mat-option *ngFor="let type of paymentTypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Card Number</mat-label>
+              <input matInput formControlName="cardNumber" required>
+              <mat-error *ngIf="thirdFormGroup.hasError('required', 'cardNumber')">Card number is required</mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('pattern', 'cardNumber')">Card number should only contain numbers</mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('minlength', 'cardNumber')">Card number should have 12 digits</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Expiry Date</mat-label>
+              <input matInput type="month" formControlName="expiryDate" required>
+              <mat-error *ngIf="thirdFormGroup.hasError('required', 'expiryDate')">Expiry date is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="createFlightBooking()">Finish</button>
+          </div>
+        </form>
       </div>
     </mat-step>
   </mat-stepper>
