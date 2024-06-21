@@ -1,6 +1,6 @@
 <body>
   <app-navbar></app-navbar>
-<br>
+  <br />
   <div class="containerall">
     <div class="container">
       <mat-form-field appearance="fill">
@@ -60,9 +60,8 @@
 
       <mat-form-field>
         <mat-label>Adults</mat-label>
-        <input matInput min = 1 [(ngModel)]="adults" type="number" />
+        <input matInput min="1" [(ngModel)]="adults" type="number" />
       </mat-form-field>
-      
     </div>
     <div class="button-row">
       <button mat-raised-button color="primary" (click)="searchFlights()">
@@ -70,64 +69,81 @@
       </button>
     </div>
 
+    <mat-spinner *ngIf="isPending"></mat-spinner>
+
     <div class="center" *ngIf="hasFlights">
       <div class="scrollable-container">
-      <p *ngFor="let flight of flights">
-        <mat-card class="flight-card">
-          <mat-card-header>
-            <mat-card-title>
-              From: {{ flight.departIataCode }} -> To:
-              {{ flight.departArrilvalIataCode }}</mat-card-title
-            >
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Departure : {{ flight.departTime }} -> Arrival :
-              {{ flight.departArrivalTime }}
-            </p>
-            <p>
-              Flight Number : {{ flight.departCarrierCode }}
-              {{ flight.departFlightNumber }}
-            </p>
-            <p>Terminal : {{ flight.departTerminal }}</p>
-            <p>Duration : {{ flight.duration }}</p>
-          </mat-card-content>
+        <p *ngFor="let flight of flights">
+          <mat-card class="flight-card">
+            <mat-card-header>
+              <mat-card-title>
+                From: {{ flight.departIataCode }} -> To:
+                {{ flight.departArrilvalIataCode }}</mat-card-title
+              >
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                Departure : {{ flight.departTime }} -> Arrival :
+                {{ flight.departArrivalTime }}
+              </p>
+              <p>
+                Flight Number : {{ flight.departCarrierCode }}
+                {{ flight.departFlightNumber }}
+              </p>
+              <p>Terminal : {{ flight.departTerminal }}</p>
+              <p>Duration : {{ flight.duration }}</p>
+            </mat-card-content>
 
-          <mat-card-header>
-            <mat-card-title>
-              From: {{ flight.returnIataCode }} -> To:
-              {{ flight.returnArrilvalIataCode }}</mat-card-title
-            >
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Departure : {{ flight.returnTime }} -> Arrival :
-              {{ flight.returnArrivalTime }}
-            </p>
-            <p>
-              Flight Number : {{ flight.returnCarrierCode }}
-              {{ flight.returnFlightNumber }}
-            </p>
-            <p>Terminal : {{ flight.returnTerminal }}</p>
-            <p>Duration : {{ flight.duration }}</p>
-          </mat-card-content>
+            <mat-card-header>
+              <mat-card-title>
+                From: {{ flight.returnIataCode }} -> To:
+                {{ flight.returnArrilvalIataCode }}</mat-card-title
+              >
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                Departure : {{ flight.returnTime }} -> Arrival :
+                {{ flight.returnArrivalTime }}
+              </p>
+              <p>
+                Flight Number : {{ flight.returnCarrierCode }}
+                {{ flight.returnFlightNumber }}
+              </p>
+              <p>Terminal : {{ flight.returnTerminal }}</p>
+              <p>Duration : {{ flight.duration }}</p>
+            </mat-card-content>
 
-          <mat-card-header>
-            <mat-card-title>
-              Total price: {{ flight.totalPrice }}
-            </mat-card-title>
-          </mat-card-header>
+            <mat-card-header>
+              <mat-card-title>
+                Total price: {{ flight.totalPrice }}
+              </mat-card-title>
+            </mat-card-header>
 
-          <mat-card-actions>
-            <div class="button-row">
-              <button mat-raised-button color="primary" (click)="bookFlight(flight)">
-                Book This Flight
-              </button>
-            </div>
-          </mat-card-actions>
-        </mat-card>
-      </p>
+            <mat-card-actions>
+              <div class="button-row">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="bookFlight(flight)"
+                >
+                  Book This Flight
+                </button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </p>
+      </div>
     </div>
+    <div class="center" *ngIf="hasError">
+      <mat-card class="flight-card">
+        <mat-card-header>
+          <mat-card-title> Ooops, an error has occured! </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Seems like there are no flights that match your preferences.</p>
+          <p>Try another period or destination and come back!</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </body>

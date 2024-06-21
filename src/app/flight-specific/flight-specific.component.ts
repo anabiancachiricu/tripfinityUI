@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { Flight } from '../model/Flight';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -40,7 +41,8 @@ import { Flight } from '../model/Flight';
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatProgressSpinnerModule
   ]
 })
 export class FlightSpecificComponent {
@@ -59,6 +61,8 @@ export class FlightSpecificComponent {
   adults:any;
   departFlight: Flight = new Flight;
   returnFlight: Flight = new Flight;
+  isPending:boolean = false;
+  hasError:boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -120,6 +124,7 @@ export class FlightSpecificComponent {
       Authorization: 'Bearer ' + this.authService.getAuthToken(),
     });
     
+    this.isPending = true;
     let params = new HttpParams();
     params = params.append('origin', this.originAirport);
     params = params.append('destination', this.destAirport);
@@ -131,10 +136,15 @@ export class FlightSpecificComponent {
 
     this.http.get<any[]>(apiUrl, { headers, params}).subscribe(
       (response: any) => {
+        this.isPending = false;
         this.flights = response;
         this.hasFlights = true;
+        this.hasError = false;
       },
       (error) => {
+        this.isPending = false;
+        this.hasError = true;
+        this.hasFlights = false;
         console.error('Error fetching data:', error);
       }
     );
