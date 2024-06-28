@@ -26,6 +26,18 @@ export class HomeLoggedInComponent {
     private authService: AuthService
   ) {}
 
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+      
+    }
+   
+  }
+
   cards = [
     { id:0, name: 'Need inspirstion?', image: '/assets/card1home.jpg' , text:' Check our suggestions page  to find out about dreamy destinations! We offer a variety of ideas for you to find your oasis of relaxation.', function: 'goToSuggestions' },
     { id:1, name: 'Need to fly somewere?', image: '/assets/card2home.jpg', text:'Check our flights page to select the flight that fits your imagination. Escape for a while, we guarantee you won`t regret it!', function: 'goToFlights' },

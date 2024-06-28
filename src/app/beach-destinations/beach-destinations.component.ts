@@ -1,15 +1,36 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../authService';
+import { AppRoutingModule } from '../app.routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-beach-destinations',
   standalone: true,
-  imports: [NavbarComponent, CommonModule],
+  imports: [NavbarComponent, CommonModule, MatButtonModule],
   templateUrl: './beach-destinations.component.html',
   styleUrl: './beach-destinations.component.scss'
 })
 export class BeachDestinationsComponent {
+
+  constructor(
+    private location: Location,
+    private authService: AuthService,
+    private router:Router
+  ){}
+
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+    }
+  }
 
   destinations = [
     {
@@ -38,6 +59,10 @@ export class BeachDestinationsComponent {
       description: 'Relax on the picturesque beaches of Santorini, known for its stunning sunsets and white-washed buildings.'
     }
   ];
+
+  public goBack(): void {
+    this.location.back();
+  }
 
 
 

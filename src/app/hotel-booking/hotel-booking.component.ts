@@ -16,6 +16,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { PaymentType } from '../model/PaymentType';
 import { MatSelectModule } from '@angular/material/select';
 import { ONLY_LETTERS_REGEX, ONLY_NUMBERS_REGEX } from '../validationConstants';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-hotel-booking',
@@ -27,7 +28,8 @@ import { ONLY_LETTERS_REGEX, ONLY_NUMBERS_REGEX } from '../validationConstants';
     MatStepperModule,
     ReactiveFormsModule,
     NavbarComponent,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   templateUrl: './hotel-booking.component.html',
   styleUrl: './hotel-booking.component.scss'
@@ -113,6 +115,16 @@ export class HotelBookingComponent {
       cardNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX)]],
       expiryDate: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+    }
   }
 
   createHotelBooking() {

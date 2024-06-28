@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { Location } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../authService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-city-destinations',
@@ -11,6 +15,21 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class CityDestinationsComponent {
 
+  constructor(
+    private location: Location,
+    private authService: AuthService,
+    private router: Router
+  ){}
+
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+    }
+  }
 
   destinations = [
     {
@@ -40,5 +59,8 @@ export class CityDestinationsComponent {
     }
   ];
   
+  public goBack(): void {
+    this.location.back();
+  }
 
 }

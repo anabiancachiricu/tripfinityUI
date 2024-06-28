@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { AuthService } from '../authService';
 
 @Component({
   selector: 'app-suggestions',
@@ -34,7 +35,22 @@ import { Router } from '@angular/router';
 })
 export class SuggestionsComponent {
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private authService:AuthService
+  ){}
+
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+        setInterval(() => this.nextCard(), 5000); // change card every 5 seconds
+    }
+   
+  }
 
   cards = [
     { name: 'Discover the Ultimate Beach Getaways: Your Dream Vacation Awaits!', image: '/assets/beach_books.jpg' , text:'Are you yearning for the sun-kissed shores and the gentle caress of ocean breezes? Look no further! Embark on an unforgettable journey to the world’s most breathtaking beach destinations, where turquoise waters meet golden sands, and paradise comes to life.', function: 'goToSea' },
@@ -43,9 +59,6 @@ export class SuggestionsComponent {
   ];
   currentCardIndex = 0;
 
-  ngOnInit() {
-    setInterval(() => this.nextCard(), 5000); // change card every 5 seconds
-  }
 
   nextCard() {
     this.currentCardIndex = (this.currentCardIndex + 1) % this.cards.length;

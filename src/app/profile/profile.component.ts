@@ -76,6 +76,9 @@ export class ProfileComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching data:', error);
+        if(error.status ==403){
+          this.router.navigate(['/error']);
+        }
       }
     );
   }

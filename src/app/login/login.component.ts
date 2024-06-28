@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit{
             console.log('Login successful', response);
           }, 3000);
           
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/home-logged-in']);
 
         },
         (error) => {

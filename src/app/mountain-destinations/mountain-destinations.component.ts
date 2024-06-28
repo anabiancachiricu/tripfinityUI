@@ -1,18 +1,39 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../authService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mountain-destinations',
   standalone: true,
   imports: [
     NavbarComponent,
-    CommonModule
+    CommonModule,
+    MatButtonModule
   ],
   templateUrl: './mountain-destinations.component.html',
   styleUrl: './mountain-destinations.component.scss'
 })
 export class MountainDestinationsComponent {
+
+  constructor(
+    private location: Location,
+    private authService:AuthService,
+    private router: Router
+  ){}
+
+  ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/error']);
+    }
+    else{
+        console.log("is logged in"  + this.authService.isLoggedIn());
+        console.log("is logged in with token"  + this.authService.getAuthToken());
+    }
+  }
 
   destinations = [
     {
@@ -41,5 +62,9 @@ export class MountainDestinationsComponent {
       description: 'Visit the Southern Alps of New Zealand, a paradise for nature lovers with its stunning fjords and alpine scenery.'
     }
   ];
+
+  public goBack(): void {
+    this.location.back();
+  }
 
 }
