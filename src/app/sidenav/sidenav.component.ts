@@ -44,5 +44,9 @@ export class SidenavComponent {
     this.router.navigate(['wishlistList']);
   }
 
+  public goToChat(){
+    this.router.navigate(['chatAi']);
+  }
+
 
 }

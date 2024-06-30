@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .input-field {
+    flex-grow: 1;
+  }
+  
+  .send-button {
+    margin-left: 10px;
+  }
+  
+  .chat-container {
+    width: 100%;
+    max-width: 600px;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    opacity: 80%;
+  }
+  
+  .message {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .question {
+    align-self: flex-start;
+    background-color: #d642a990;
+    padding: 5px;
+    // margin: 5px;
+    border-radius: 15px;
+  }
+  
+  .response {
+    align-self: flex-end;
+    background-color: #3d92dc;
+    padding: 5px;
+    // margin: 5px;
+    border-radius: 15px;
+  }
+  
+  body {
+    background-image: url("/assets/chat.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents body from scrolling */
+  }
+
+  .center::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .scrollable-container {
+    max-height: 500px; 
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
+}

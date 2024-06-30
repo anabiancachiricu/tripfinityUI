@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GoogleMapsModule } from '@angular/google-maps';
 import {  } from '@google/maps';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatDialogModule,
     GoogleMapsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MdbCarouselModule
   ],
   bootstrap: [AppModule]
 })

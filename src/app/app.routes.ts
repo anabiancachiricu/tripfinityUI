@@ -26,6 +26,7 @@ import { BeachDestinationsComponent } from './beach-destinations/beach-destinati
 import { CityDestinationsComponent } from './city-destinations/city-destinations.component';
 import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
 import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component';
+import { ChatComponent } from './chat/chat.component';
 
 export const routes: Routes = [
     {path: 'login', component:LoginComponent},
@@ -53,7 +54,8 @@ export const routes: Routes = [
     {path: 'beachDestinations', component:BeachDestinationsComponent},
     {path: 'cityDestinations', component:CityDestinationsComponent},
     {path: 'wishlistList', component:WishlistListComponent},
-    {path: 'home-logged-in', component:HomeLoggedInComponent}
+    {path: 'home-logged-in', component:HomeLoggedInComponent},
+    {path: 'chatAi', component:ChatComponent}
 ];
 
 @NgModule({

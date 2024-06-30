@@ -1,0 +1,27 @@
+<body>
+  <app-navbar></app-navbar>
+  <br />
+  <div class="container">
+    <div class="input-container">
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Ask me anything</mat-label>
+        <input matInput placeholder="Enter prompt" [(ngModel)]="prompt" />
+      </mat-form-field>
+      <button mat-icon-button class="send-button" aria-label="Send" (click)="askAiChat()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+    <img src="/assets/search-loader.gif"  *ngIf="isPending" style="width:48px;height:48px;">
+    <div class="chat-container scrollable-container" *ngIf="hasMessages">
+      <div class="message" *ngFor="let message of messages">
+        <div *ngIf="message.type === 'question'" class="question">
+          <h2>{{ message.text }}</h2>
+        </div>
+        <div *ngIf="message.type === 'response'" class="response">
+          <h3>{{message.text.candidates[0].content.parts[0].text}}</h3>
+          <!-- <h3>{{ message.text }}</h3> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
