@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
@@ -33,60 +33,82 @@ import { AuthService } from '../authService';
   templateUrl: './suggestions.component.html',
   styleUrls: ['./suggestions.component.scss']
 })
-export class SuggestionsComponent {
+export class SuggestionsComponent implements OnInit, OnDestroy {
+  
+  private currentCardIndex: number = 0;
+  private intervalId: any;
+  visibleCards: any[] = [];
 
   constructor(
     private router: Router,
-    private authService:AuthService
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/error']);
+    } else {
+      console.log("is logged in "  + this.authService.isLoggedIn());
+      console.log("is logged in with token "  + this.authService.getAuthToken());
+      this.initializeVisibleCards();
+      this.startCarousel();
     }
-    else{
-        console.log("is logged in"  + this.authService.isLoggedIn());
-        console.log("is logged in with token"  + this.authService.getAuthToken());
-        setInterval(() => this.nextCard(), 5000); // change card every 5 seconds
-    }
-   
   }
 
   cards = [
-    { name: 'Discover the Ultimate Beach Getaways: Your Dream Vacation Awaits!', image: '/assets/beach_books.jpg' , text:'Are you yearning for the sun-kissed shores and the gentle caress of ocean breezes? Look no further! Embark on an unforgettable journey to the world’s most breathtaking beach destinations, where turquoise waters meet golden sands, and paradise comes to life.', function: 'goToSea' },
-    { name: 'Unveil the Majesty of Mountain Retreats: Your Dream Adventure Awaits!', image: '/assets/mountain_backpack.jpg', text:'Are you craving the crisp mountain air and the thrill of alpine vistas? Look no further! Embark on an unforgettable journey to the world’s most breathtaking mountain destinations, where majestic peaks meet tranquil valleys, and adventure comes to life.', function: 'goToMountains' },
-    { name: 'Discover the Vibrancy of Urban Escapes: Your Dream City Adventure Awaits!', image: '/assets/city.jpg', text: 'Are you longing for the excitement of bustling streets and the allure of urban sophistication? Look no further! Embark on an unforgettable journey to the world’s most dynamic city destinations, where culture, history, and modernity converge to create the ultimate urban experience.', function: 'goToCity' }
+    { id:0, dest:'beach', name: 'Discover the Ultimate Beach Getaways: Your Dream Vacation Awaits!', image: '/assets/beach_books.jpg', text: 'Are you yearning for the sun-kissed shores and the gentle caress of ocean breezes? Look no further! Embark on an unforgettable journey to the world’s most breathtaking beach destinations, where turquoise waters meet golden sands, and paradise comes to life.', function: 'goToSea' },
+    { id:1, dest:'mountain',name: 'Unveil the Majesty of Mountain Retreats: Your Dream Adventure Awaits!', image: '/assets/mountain_backpack.jpg', text: 'Are you craving the crisp mountain air and the thrill of alpine vistas? Look no further! Embark on an unforgettable journey to the world’s most breathtaking mountain destinations, where majestic peaks meet tranquil valleys, and adventure comes to life.', function: 'goToMountains' },
+    { id:2, dest:'city', name: 'Discover the Vibrancy of Urban Escapes: Your Dream City Adventure Awaits!', image: '/assets/city.jpg', text: 'Are you longing for the excitement of bustling streets and the allure of urban sophistication? Look no further! Embark on an unforgettable journey to the world’s most dynamic city destinations, where culture, history, and modernity converge to create the ultimate urban experience.', function: 'goToCity' }
   ];
-  currentCardIndex = 0;
+  // currentCardIndex = 0;
 
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
 
-  nextCard() {
+  initializeVisibleCards(): void {
+    this.visibleCards = this.cards.slice(0, 3);
+  }
+
+  startCarousel(): void {
+    this.intervalId = setInterval(() => {
+      this.moveCarousel();
+    }, 3000); 
+    
+    // Change card every 3 seconds
+  }
+
+  moveCarousel(): void {
     this.currentCardIndex = (this.currentCardIndex + 1) % this.cards.length;
-    console.log(this.currentCardIndex);
+    console.log("Current card index:", this.currentCardIndex);
+    console.log(this.visibleCards[this.currentCardIndex].dest)
+    this.updateVisibleCards();
   }
 
-  onButtonClick() {
-    const actions = [
-      this.actionForCard0.bind(this),
-      this.actionForCard1.bind(this),
-      this.actionForCard2.bind(this)
-    ];
-    actions[this.currentCardIndex]();
+  updateVisibleCards(): void {
+    const nextIndex = (this.currentCardIndex + 3) % this.cards.length;
+    if (this.currentCardIndex <= this.cards.length - 3) {
+      this.visibleCards = this.cards.slice(this.currentCardIndex, this.currentCardIndex + 3);
+    } else {
+      this.visibleCards = [
+        ...this.cards.slice(this.currentCardIndex),
+        ...this.cards.slice(0, nextIndex),
+      ];
+    }
   }
 
-  actionForCard0() {
-    console.log("Action for card 0");
-    this.router.navigate(['/beachDestinations']);
+  onButtonClick( id: any) {
+    if(id ==0){
+      this.router.navigate(['/beachDestinations']);
+    }
+    if(id==1){
+      this.router.navigate(['/mountainDestinations']);
+    }
+    if(id==2){
+      this.router.navigate(['/cityDestinations']);
+    }
+    
   }
-
-  actionForCard1() {
-    console.log("Action for card 1");
-    this.router.navigate(['/mountainDestinations']);
-  }
-
-  actionForCard2() {
-    console.log("Action for card 2");
-    this.router.navigate(['/cityDestinations']);
-  }
-
 }

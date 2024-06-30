@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-city-destinations',
   standalone: true,
-  imports: [NavbarComponent, CommonModule],
+  imports: [NavbarComponent, CommonModule, MatButtonModule],
   templateUrl: './city-destinations.component.html',
   styleUrl: './city-destinations.component.scss'
 })

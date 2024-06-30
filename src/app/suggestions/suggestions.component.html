@@ -2,7 +2,34 @@
     <app-navbar></app-navbar>
     <div class="center-wrapper">
         <div class="center">
+            <div class="container">
+            <h1>Don't know  where to go? </h1>
+            </div>
+            <div class="container">
+            <h3>Check our suggestions and find your dream vacation!</h3>
+        </div>
             <div class="carousel-container">
+                <div class="carousel">
+                  <div class="carousel-item" *ngFor="let card of visibleCards">
+                    <mat-card class="flight-card">
+                        <mat-card-header>
+                            <mat-card-title>{{ card.name }}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <img class="img" [src]="card.image" alt="carousel image">
+                            <p>{{ card.text }}</p>
+                        </mat-card-content>
+                        <mat-card-actions class="action-buttons">
+                            <button mat-raised-button color="primary" (click)="onButtonClick(card.id)">
+                                See destinatons
+                            </button>
+                        </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+
+            <!-- <div class="carousel-container">
                 <div class="carousel">
                     <div class="carousel-item" *ngFor="let card of cards; let i = index" 
                          [ngClass]="{'focused': i === currentCardIndex, 
@@ -24,7 +51,7 @@
                         </mat-card>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
