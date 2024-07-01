@@ -42,6 +42,7 @@ export const routes: Routes = [
     {path: 'flight-booking', component:FlightBookingComponent},
     {path: 'hotels', component: HotelComponent},
     {path: 'hotels/:id/:check-in/:check-out/:adults/:lat/:long', component:HotelDetailsComponent},
+    {path: 'hotels/:check-in/:check-out/:adults', component:HotelComponent},
     {path: 'hotel-booking', component:HotelBookingComponent},
     {path: 'favourits', component:FavouritesListComponent},
     {path: 'hotel-booking-list', component:HotelBookingListComponent},

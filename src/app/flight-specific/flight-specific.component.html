@@ -10,6 +10,7 @@
           matInput
           [formControl]="searchControl"
           [matAutocomplete]="auto"
+          required="true"
         />
         <mat-autocomplete
           #auto="matAutocomplete"
@@ -28,6 +29,7 @@
         appearance="fill"
         placeholder="Choose the product"
         [formControl]="searchControl"
+        required="true"
       >
         <mat-label>Destination:</mat-label>
         <mat-select
@@ -47,8 +49,9 @@
             matStartDate
             placeholder="Departure"
             [(ngModel)]="departDate"
+            required="true"
           />
-          <input matEndDate placeholder="Return" [(ngModel)]="returnDate" />
+          <input matEndDate placeholder="Return" [(ngModel)]="returnDate" required="true"/>
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
@@ -60,7 +63,7 @@
 
       <mat-form-field>
         <mat-label>Adults</mat-label>
-        <input matInput min="1" [(ngModel)]="adults" type="number" />
+        <input matInput min="1" [(ngModel)]="adults" type="number" required="true" />
       </mat-form-field>
     </div>
     <div class="button-row">

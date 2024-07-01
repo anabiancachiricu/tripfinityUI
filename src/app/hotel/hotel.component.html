@@ -5,7 +5,7 @@
         <div class="container">
         <mat-form-field appearance="fill">
             <mat-label>City</mat-label>
-            <input matInput placeholder="Enter city" [(ngModel)]="city">
+            <input matInput placeholder="Enter city" [(ngModel)]="city" required="true">
           </mat-form-field>
 
           <mat-form-field>
@@ -15,8 +15,9 @@
                 matStartDate
                 placeholder="Departure"
                 [(ngModel)]="check_in"
+                required="true"
               />
-              <input matEndDate placeholder="Return" [(ngModel)]="check_out" />
+              <input matEndDate placeholder="Return" [(ngModel)]="check_out"  required="true"/>
             </mat-date-range-input>
             <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
@@ -28,7 +29,7 @@
 
           <mat-form-field>
             <mat-label>Adults</mat-label>
-            <input matInput min = 1 [(ngModel)]="adults" type="number" />
+            <input matInput min = 1 [(ngModel)]="adults" type="number"  required="true" />
           </mat-form-field>
         </div>
       
@@ -37,7 +38,8 @@
           Search
         </button>
       </div>
-      <mat-spinner *ngIf = "isPending"></mat-spinner>
+      <img src="/assets/search-loader.gif"  *ngIf="isPending" style="width:48px;height:48px;">
+
       <div class="center-wrapper">
       <div class="center" *ngIf="hasHotels">
         <h2>Where to stay in {{ this.city }}</h2>
@@ -58,6 +60,17 @@
           </mat-card-actions>
           </mat-card>
         </p>
+      </div>
+      <div class="center" *ngIf="hasError">
+        <mat-card class="flight-card">
+          <mat-card-header>
+            <mat-card-title> Ooops, an error has occured! </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Seems like there are no hotels that match your preferences.</p>
+            <p>Try another period or destination and come back!</p>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
   </div>

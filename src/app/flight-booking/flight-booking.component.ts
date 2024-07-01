@@ -36,6 +36,7 @@ import {
   ONLY_NUMBERS_REGEX,
   PHONE_NUMBER_REGEX,
 } from '../validationConstants';
+import { PaymentTypeFlight } from '../model/PaymentTypeFlight';
 
 @Component({
   selector: 'app-flight-booking',
@@ -70,7 +71,7 @@ export class FlightBookingComponent {
   returnFlight: Flight = new Flight();
   adults: any;
   extrabag: any;
-  paymentTypes = Object.values(PaymentType);
+  paymentTypes = Object.values(PaymentTypeFlight);
   passengers!: any[];
 
   payment: PaymentDTO = {
@@ -142,8 +143,8 @@ export class FlightBookingComponent {
           [
             Validators.required,
             Validators.pattern(ONLY_NUMBERS_REGEX),
-            Validators.minLength(12),
-            Validators.maxLength(12),
+            Validators.minLength(16),
+            Validators.maxLength(16),
           ],
         ],
         expiryDate: ['', Validators.required],

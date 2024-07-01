@@ -100,6 +100,7 @@
                   {{ type }}
                 </mat-option>
               </mat-select>
+           
             </mat-form-field>
           </div>
           <div>
@@ -108,6 +109,12 @@
               <input matInput formControlName="cardNumber" required>
               <mat-error *ngIf="thirdFormGroup.hasError('required', 'cardNumber')">Card number is required</mat-error>
               <mat-error *ngIf="thirdFormGroup.hasError('pattern', 'cardNumber')">Card number is not valid</mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('minlength', 'cardNumber')">
+                Card number should have 16 digits
+              </mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('maxlength', 'cardNumber')">
+                Card number should have 16 digits
+              </mat-error>
             </mat-form-field>
           </div>
           <div>

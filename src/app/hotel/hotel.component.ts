@@ -56,6 +56,7 @@ export class HotelComponent {
   adults:any;
   lat: any;
   long: any;
+  hasError: boolean=false;
   
 
   constructor(
@@ -90,10 +91,12 @@ export class HotelComponent {
         this.hotels = response;
         this.hasHotels = true;
         this.isPending=false;
+        this.hasError=false;
       },
       (error) => {
         console.error('Error fetching data:', error);
         this.isPending=false;
+        this.hasError= true;
       }
     );
   }

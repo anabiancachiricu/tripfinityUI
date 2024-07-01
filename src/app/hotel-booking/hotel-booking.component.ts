@@ -112,7 +112,7 @@ export class HotelBookingComponent {
 
     this.thirdFormGroup = this._formBuilder.group({
       paymentType: ['', Validators.required],
-      cardNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX)]],
+      cardNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX), Validators.minLength(16), Validators.maxLength(16)]],
       expiryDate: ['', Validators.required]
     });
   }

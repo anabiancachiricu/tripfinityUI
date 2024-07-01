@@ -147,6 +147,7 @@ export class HotelDetailsComponent {
 
   public goBack(): void {
     this.location.back();
+    // this.router.navigate(['hotels/:check-in/:check-out/:adults'])
   }
 
   public bookHotel(){

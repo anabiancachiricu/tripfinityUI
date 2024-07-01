@@ -158,7 +158,10 @@
                 Card number should only contain numbers
               </mat-error>
               <mat-error *ngIf="thirdFormGroup.hasError('minlength', 'cardNumber')">
-                Card number should have 12 digits
+                Card number should have 16 digits
+              </mat-error>
+              <mat-error *ngIf="thirdFormGroup.hasError('maxlength', 'cardNumber')">
+                Card number should have 16 digits
               </mat-error>
             </mat-form-field>
           </div>
