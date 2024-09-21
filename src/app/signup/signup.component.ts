@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
   maxDate: Date;
   allRequiredFieldsCompleted: boolean = false;
   hasError: boolean=false;
+  created: boolean= false;
   
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
     this.minDate = new Date(1924, 0, 1); // January is month 0
@@ -92,6 +93,8 @@ export class SignupComponent implements OnInit {
       this.allRequiredFieldsCompleted = this.areAllRequiredFieldsCompleted();
       console.log(this.allRequiredFieldsCompleted);
     });
+
+    this.created = false;
   }
 
 
@@ -106,6 +109,7 @@ export class SignupComponent implements OnInit {
         (response) => {
           this.router.navigate(['/hero-login']);
           console.log('Signup successful', response);
+          this.created = true;
           this.signupForm.reset();
           
         },
@@ -113,6 +117,7 @@ export class SignupComponent implements OnInit {
           console.error('Signup failed', error.errorMessage);
           this.hasError = true;
           this.errorMessage =error.errorMessage;
+          this.created = false;
         }
       );
     }

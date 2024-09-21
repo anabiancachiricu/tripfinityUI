@@ -29,7 +29,7 @@
             <p *ngFor="let pass of flightBookingResponse.passengerList" >
                 {{ pass.firstName }} {{pass.lastName}}
                 <br>
-                Fly with {{pass.documents[0].type}} {{pass.documents[0].number}}
+                Fly with {{pass.documents[0].type}} 
                 <br>
                 Contact: {{pass.email}}, {{pass.phoneNumber}} 
             </p>

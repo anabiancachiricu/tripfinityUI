@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
   loginForm!:FormGroup;
   errorMessage: string = '';
   allRequiredFieldsCompleted: boolean = false;
+  hasError: boolean = false;
   
   constructor(private http: HttpClient,   private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
   }
@@ -83,6 +84,7 @@ export class LoginComponent implements OnInit{
       this.http.post(apiUrl, this.loginForm.value).subscribe(
         (response: any) => {
           console.log('Login successful', response);
+          this.hasError = false;
 
           this.authService.setAuthToken(response.message.toString());
           console.log("token: " + this.authService.getAuthToken())
@@ -96,6 +98,7 @@ export class LoginComponent implements OnInit{
         (error) => {
           console.error('Login failed', error);
           console.log("token: " + this.authService.getAuthToken())
+          this.hasError = true;
           this.errorMessage = "Must complete with another username."
         }
       );

@@ -20,7 +20,7 @@
         <mat-error *ngIf="loginForm.hasError('required', 'password')">Password is required</mat-error>
       </mat-form-field>
       <br />
-
+      <div *ngIf="hasError" color="primary">Wrong credentials</div>
       <button mat-raised-button color="primary" type="submit" [disabled]="!allRequiredFieldsCompleted">Log In</button>
       <!-- <button  mat-raised-button color="primary" type="submit" (click)="loginWithGoogle()">Login with Google</button> -->
 

@@ -40,6 +40,7 @@ export class HotelBookingComponent {
   secondFormGroup!: FormGroup;
   thirdFormGroup!: FormGroup;
 
+  minDate!: string;
   hotelBooking : HotelBookingRequest = new HotelBookingRequest;
   paymentTypes = Object.values(PaymentType); // Get all values of the PaymentType enum
 
@@ -115,6 +116,7 @@ export class HotelBookingComponent {
       cardNumber: ['', [Validators.required, Validators.pattern(ONLY_NUMBERS_REGEX), Validators.minLength(16), Validators.maxLength(16)]],
       expiryDate: ['', Validators.required]
     });
+
   }
 
   ngOnInit(): void {
@@ -124,8 +126,13 @@ export class HotelBookingComponent {
     else{
         console.log("is logged in"  + this.authService.isLoggedIn());
         console.log("is logged in with token"  + this.authService.getAuthToken());
+        const today = new Date();
+        const month = today.getMonth() + 1; // Months are zero based
+        const year = today.getFullYear();
+        this.minDate = `${year}-${month < 10 ? '0' + month : month}`;
     }
   }
+
 
   createHotelBooking() {
 
